@@ -3,10 +3,10 @@
 Run with the ep_geoscience_analytics interpreter (pandas, scipy, pyarrow):
 
     ..\\ep_geoscience_analytics\\.venv\\Scripts\\python.exe -I scripts\\make_beats.py ^
-        --ep ..\\ep_geoscience_analytics --volve C:\\appl\\Volve --surfaces ..\\volve-surfaces
+        --ep ..\\ep_geoscience_analytics --volve C:\\appl\\Volve --surfaces ..\\kit-surfaces
 
 Inputs (none committed): the Volve well-log zip (one LAS file of 15/9-F-11 T2), the ep mid-layer
-(check-shot tables, reserves snapshots, field master), volve-surfaces closures.json and contacts.json, and
+(check-shot tables, reserves snapshots, field master), kit-surfaces closures.json and contacts.json, and
 story/data/section.json written by make_seismic.py (for the dominant frequency).
 
 Assumptions are stated next to the code and repeated in data/README.md:
@@ -16,7 +16,7 @@ Assumptions are stated next to the code and repeated in data/README.md:
   around the reservoir. No stretch or squeeze is applied to the synthetic; a single bulk shift is reported.
 - The wedge is synthetic: two interfaces of equal and opposite reflectivity at the log's reservoir velocity.
 - The depth fan reads every Volve check-shot table at one two-way time that all of them cover.
-- Closure area against depth is the Volve high on the Hugin top depth surface from volve-surfaces, which is an
+- Closure area against depth is the Volve high on the Hugin top depth surface from kit-surfaces, which is an
   interpreted and smoothed surface; the contact distribution is the 2005 plan for development (PUD) as
   digitised there.
 - The volume simulation is illustrative: its parameters are chosen for the story and listed; it is not a

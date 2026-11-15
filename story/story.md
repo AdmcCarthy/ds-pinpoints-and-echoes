@@ -24,7 +24,7 @@ sources:
   volve:
     name: Volve data village, Equinor ASA and the former Volve licence partners
     url: "https://www.equinor.com/energy/volve-data-sharing"
-    note: "Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display. Horizons, closure curve and contact distribution via volve-surfaces; surveys, check shots and picks via the author's data engine."
+    note: "Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display. Horizons, closure curve and contact distribution via kit-surfaces; surveys, check shots and picks via the author's data engine."
   gebco:
     name: GEBCO, release of the GEBCO_2025 Grid
     url: "https://gebco.net/news/release-gebco2025-grid"
@@ -464,7 +464,7 @@ subtitle: Area inside the closing contour of the Volve high on the Hugin top, ag
 source: volve
 confidence: interpreted
 unit: m below MSL, km²
-notes: The curve is the merge-tree closure analysis of volve-surfaces on a smoothed, interpreted depth surface; it is a reading of the structure, not the plan's own map. The contact distribution is digitised from the 2005 plan for development, table 3.5. Depth increases downward.
+notes: The curve is the merge-tree closure analysis of kit-surfaces on a smoothed, interpreted depth surface; it is a reading of the structure, not the plan's own map. The contact distribution is digitised from the 2005 plan for development, table 3.5. Depth increases downward.
 ```
 :::
 
@@ -647,7 +647,7 @@ subtitle: The same wellheads, each enlarged by the factor stated below
 The Volve data were released by Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway,
 Bayerngas Norge) under the Volve Terms and Conditions, a rare open release of a complete field, and this story
 could not be told without it. Wellbore, field and reserves data are from Sodir (Source: Sodir, under the Norwegian Licence for Open Government Data).
-Closure and contact analysis comes from the author's volve-surfaces project; surveys, check shots and picks
-from the author's data engine. Built with SubScout by Adam McCarthy (github.com/AdmcCarthy/SubScout). No
+Closure and contact analysis comes from the author's kit-surfaces project; surveys, check shots and picks
+from the author's data engine. Built with SubScout by Adam McCarthy (github.com/AdmcCarthy/kit-subscout). No
 endorsement by Equinor, the former partners or Sodir is implied. Numbers, methods and sources follow in the
 basis of analysis.

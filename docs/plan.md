@@ -12,7 +12,7 @@ The title moved from "Pinpricks" to **Pinpoints and Echoes** (README.md, CLAUDE.
 
 ## Status 2026-11-09: full narrative built and published
 
-All beats of the outline are built and live at <https://admccarthy.github.io/Pinpoints-and-Echoes/>: hook, ladder, observation (F-11 T2 log), echo (ST10010 inline and a synthetic wedge), tie, error stack, interpretation spread, depth fan, volumes (closure area, 2005 contact distribution, labelled simulation), test (Sodir estimates of Volve and 59 fields' revisions) and the three-word close. Comparatives used: seafloor mapping (GEBCO 2025), tunnelling (Hoek and Palmieri 1998), weather ensembles (ECMWF). Not used: the unverified look-back figures (Sodir 2.5x, Dutch 58%, Westwood 78%). Open: readability gate not run (needs a Playwright browser download); pre-drill prognosis per well not public.
+All beats of the outline are built and live at <https://admccarthy.github.io/ds-pinpoints-and-echoes/>: hook, ladder, observation (F-11 T2 log), echo (ST10010 inline and a synthetic wedge), tie, error stack, interpretation spread, depth fan, volumes (closure area, 2005 contact distribution, labelled simulation), test (Sodir estimates of Volve and 59 fields' revisions) and the three-word close. Comparatives used: seafloor mapping (GEBCO 2025), tunnelling (Hoek and Palmieri 1998), weather ensembles (ECMWF). Not used: the unverified look-back figures (Sodir 2.5x, Dutch 58%, Westwood 78%). Open: readability gate not run (needs a Playwright browser download); pre-drill prognosis per well not public.
 
 ## Revision 2026-11-08: field independent, Volve as the receipt
 
@@ -24,7 +24,7 @@ The story is about any field, not Volve. Volve is the backing: an open, real cas
 |---|---|---|
 | `ep_geoscience_analytics` | Sodir wellbores, fields, discoveries, seismic surveys (notebook 17); Volve logs (about 7 GB DLIS/LAS), check shots and time-depth tables, horizon-vs-well-pick checks (347 pairs), fault sticks and polygons, position uncertainty (`xy_sigma_m`, `z_sigma_m`), production | Scale hook, observation, tie, depth, test |
 | `seismic_art` | Synthetic cube with known truth; windows along horizons, wiggle features; rings, growth, flow and cities sketches; Volve exports | Echo beat, the art-led opening and closing visual |
-| `volve-surfaces` | Smoothed Volve horizons in time and depth, fault throw, 132 well picks checked, scale bar and attribution pattern | Map and "cut the map" figures, and the reusable attribution wording |
+| `kit-surfaces` | Smoothed Volve horizons in time and depth, fault throw, 132 well picks checked, scale bar and attribution pattern | Map and "cut the map" figures, and the reusable attribution wording |
 | `SubScout` | Story format, arcs (`pre-post-drill`, `zoom`), P90/P50/P10 forms, well symbols, readability gate | The build |
 
 ## The scale ladder (the spine)
@@ -66,7 +66,7 @@ Builds on the existing outline, with the data mapped.
 | tie | Well tie: log, synthetic, traces | Volve check shots and logs | Interpreted |
 | interpretation | Alternative pictures of one surface | Volve "Official" vs "Other" horizons; base survey vs reprocessed (ST0202 vs ST10010); real pick-to-horizon misfit | Interpreted |
 | measurement error | Position ellipse and depth reference per well | `position_uncertainty`, rotary-table elevation | Derived |
-| depth | Time-to-depth fan; "cut the map" | Check-shot disagreement (one table is tens of ms off at the reservoir); `volve-surfaces` | Interpreted |
+| depth | Time-to-depth fan; "cut the map" | Check-shot disagreement (one table is tens of ms off at the reservoir); `kit-surfaces` | Interpreted |
 | volumes | P90/P50/P10 bar and exceedance curve | To build; pick inputs with ranges, state them | Interpreted (simulated, labelled so) |
 | test | Prognosis against outcome | See open question 3 | Observed vs Interpreted |
 | therefore | How to read a subsurface claim | none | n/a |
@@ -75,8 +75,8 @@ Builds on the existing outline, with the data mapped.
 
 ## Licences and acknowledgements
 
-- **Volve.** `volve-surfaces/DATA-LICENCE.md` sets the working terms: credit Equinor and the former licence partners, link the Terms and Conditions, no sale, nothing misleading, no endorsement, as-is. `seismic_art/docs/concepts.md` said CC BY-NC-SA, which was wrong: the terms are CC BY 4.0 based with a no-sale condition (Idiom `DATASETS.md`, read 2026-11-09). Recorded in `DATA-LICENCE.md`.
-- Use the attribution line from `volve-surfaces` on the story and in the appendix, and add a plain-language acknowledgement of Volve as a rare open data release.
+- **Volve.** `kit-surfaces/DATA-LICENCE.md` sets the working terms: credit Equinor and the former licence partners, link the Terms and Conditions, no sale, nothing misleading, no endorsement, as-is. `seismic_art/docs/concepts.md` said CC BY-NC-SA, which was wrong: the terms are CC BY 4.0 based with a no-sale condition (Idiom `DATASETS.md`, read 2026-11-09). Recorded in `DATA-LICENCE.md`.
+- Use the attribution line from `kit-surfaces` on the story and in the appendix, and add a plain-language acknowledgement of Volve as a rare open data release.
 - **Sodir.** Check the FactPages licence and record the terms in `data/README.md`.
 - Raw data stays out of git (`data/raw/`, ignored); only story-sized extracts are committed.
 - Code is MIT; the narrative text and figures need their own licence, consistent with the data terms.
@@ -86,7 +86,7 @@ Builds on the existing outline, with the data mapped.
 1. **Housekeeping.** Rename text to Pinpoints. Add `docs/` links to CLAUDE.md. Settle licences (above) and write `data/README.md`.
 2. **Audit.** Confirm what exists locally: the Volve SEG-Y, logs and interpretation files; whether the Volve seismic cube is available (`seismic_art` notes it is not local); and the Sodir marts. Decide the Volve well and the extraction window. Output: a short availability table.
 3. **Extracts and metrics.** Small, committed files in `data/`; `story.py` with the scale and uncertainty metrics, each with source and confidence.
-4. **Figures.** Check which devices SubScout's `charts.js` already covers (map, dots, range bars) and which are new custom figures (wiggle section, well tie, composite log, depth fan, exceedance curve). Reuse `seismic_art` and `volve-surfaces` D3 code where it fits.
+4. **Figures.** Check which devices SubScout's `charts.js` already covers (map, dots, range bars) and which are new custom figures (wiggle section, well tie, composite log, depth fan, exceedance curve). Reuse `seismic_art` and `kit-surfaces` D3 code where it fits.
 5. **Write and build.** Replace the outline with prose. `uv run subscout build`, then the readability gate on phone and desktop.
 6. **Review and publish.** Check every number appears in the ledger; check attribution; publish to GitHub Pages. Publishing is public, so confirm first.
 

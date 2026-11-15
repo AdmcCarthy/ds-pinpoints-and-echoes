@@ -1,14 +1,14 @@
 # Pinpoints and Echoes
 
 A data story about how uncertain subsurface interpretation is, and why it can still be trusted. Live page:
-<https://admccarthy.github.io/Pinpoints-and-Echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/SubScout);
+<https://admccarthy.github.io/ds-pinpoints-and-echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/kit-subscout);
 the argument is field-independent and the worked case is Volve. Plan: [`docs/plan.md`](docs/plan.md); comparatives
 research: [`docs/comparatives.md`](docs/comparatives.md); the original outline: [`docs/outline-v2.md`](docs/outline-v2.md).
 
 ## Build
 
 Data extracts are written by the scripts in `scripts/` from local copies of the Volve data (`C:\appl\Volve`, never committed), the
-`ep_geoscience_analytics` mid-layer and `volve-surfaces`; the small results are committed in `story/data/`. The page is built by
+`ep_geoscience_analytics` mid-layer and `kit-surfaces`; the small results are committed in `story/data/`. The page is built by
 SubScout from `story/`.
 
 ```powershell
@@ -16,12 +16,12 @@ SubScout from `story/`.
 ..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_extracts.py --ep ..\ep_geoscience_analytics
 ..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_spread.py --ep ..\ep_geoscience_analytics --zip C:\appl\Volve\Volve_Geophysical_Interpretations.zip
 ..\seismic_lib\.venv\Scripts\python.exe -I scripts\make_seismic.py --segy "C:\appl\Volve\Seismic\ST10010ZC11_PZ_PSDM_KIRCH_FULL_T.MIG_FIN.POST_STACK.3D.JS-017536.segy" --x 436123.2 --y 6479126.0 --well "15/9-F-11 T2"
-..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_beats.py --ep ..\ep_geoscience_analytics --volve C:\appl\Volve --surfaces ..\volve-surfaces
+..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_beats.py --ep ..\ep_geoscience_analytics --volve C:\appl\Volve --surfaces ..\kit-surfaces
 uv run --project ..\seismic_art python scripts\make_header.py
 # page (SubScout is a sibling checkout; GitHub Pages builds the same way from SubScout main)
-cd ..\SubScout; uv run subscout build ..\Pinpoints-and-Echoes\story --out ..\Pinpoints-and-Echoes\_site
+cd ..\SubScout; uv run subscout build ..\ds-pinpoints-and-echoes\story --out ..\ds-pinpoints-and-echoes\_site
 # readability gate: every step legible on three phone and two desktop sizes (needs `uv run playwright install chromium` once)
-uv run python scripts\readability.py ..\Pinpoints-and-Echoes\_site
+uv run python scripts\readability.py ..\ds-pinpoints-and-echoes\_site
 ```
 
 ## The thesis
@@ -66,7 +66,7 @@ The beat-by-beat outline is in [`story/story.md`](story/story.md).
 
 ## Data in use
 
-Sodir FactPages (wellbores, fields, reserves) and the Volve data village (logs, seismic, interpretations, check shots, surveys, the 2005 plan's contact distribution via volve-surfaces). Terms in `DATA-LICENCE.md`. Candidates considered and not used:
+Sodir FactPages (wellbores, fields, reserves) and the Volve data village (logs, seismic, interpretations, check shots, surveys, the 2005 plan's contact distribution via kit-surfaces). Terms in `DATA-LICENCE.md`. Candidates considered and not used:
 
 - Norwegian Offshore Directorate (Sodir) FactPages / FactMaps: wellbores, discoveries, fields.
 - Equinor's Volve field data release: seismic, well logs and production for one field.
@@ -80,8 +80,8 @@ See [`data/README.md`](data/README.md).
 
 MIT License with Acknowledgement (see [LICENSE](LICENSE)): the MIT licence plus one condition, that anything built with this
 work says so visibly and does not imply endorsement. It is custom wording and not OSI-approved. Use the line:
-"Built with Pinpoints and Echoes by Adam McCarthy (https://github.com/AdmcCarthy/Pinpoints-and-Echoes)".
+"Built with Pinpoints and Echoes by Adam McCarthy (https://github.com/AdmcCarthy/ds-pinpoints-and-echoes)".
 
 The data extracts keep their own terms: Sodir (NLOD 2.0, "Source: Sodir") and the Volve data village (Volve Terms and
 Conditions, CC BY 4.0 based with a no-sale condition). Details and attribution lines: [DATA-LICENCE.md](DATA-LICENCE.md).
-Built with SubScout by Adam McCarthy (https://github.com/AdmcCarthy/SubScout).
+Built with SubScout by Adam McCarthy (https://github.com/AdmcCarthy/kit-subscout).
