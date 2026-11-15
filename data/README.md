@@ -1,6 +1,6 @@
 # Data
 
-Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committed in `story/data/`, written by `scripts/make_extracts.py` from the `ep_geoscience_analytics` mid-layer. Heavy ingestion stays there.
+Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committed in `story/data/`, written by `scripts/make_extracts.py` from the `ep-geoscience-analytics` mid-layer. Heavy ingestion stays there.
 
 ## In use
 
@@ -15,7 +15,7 @@ Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committe
 | `story/data/wedge.json` | Synthetic wedge at the data's centroid frequency and the log's reservoir velocity | echo (resolution) |
 | `story/data/tie.csv`, `trace.csv` | Synthetic seismogram from the log and the real trace at the well | tie |
 | `story/data/timedepth.csv` | Every Volve check-shot table, decimated, plus the reading at 2,650 ms | depth fan |
-| `story/data/closure.csv`, `contact.csv` | Area against depth of the Volve high on the Hugin top (volve-surfaces) and the 2005 plan's contact distribution | volumes |
+| `story/data/closure.csv`, `contact.csv` | Area against depth of the Volve high on the Hugin top (kit-surfaces) and the 2005 plan's contact distribution | volumes |
 | `story/data/volumes.csv` | Exceedance curve of the illustrative simulation (seed 7, 20,000 draws) | volumes |
 | `story/data/volve_reserves.csv`, `revisions.csv` | Sodir recoverable estimates of Volve by year, and first-to-latest ratios of 59 fields | test |
 | `story/data/beats_notes.json` | Method notes and summary numbers written by `make_beats.py`, read as metrics | several |
