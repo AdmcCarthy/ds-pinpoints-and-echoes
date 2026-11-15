@@ -648,6 +648,6 @@ The Volve data were released by Equinor ASA and the former Volve licence partner
 Bayerngas Norge) under the Volve Terms and Conditions, a rare open release of a complete field, and this story
 could not be told without it. Wellbore, field and reserves data are from Sodir (Source: Sodir, under the Norwegian Licence for Open Government Data).
 Closure and contact analysis comes from the author's kit-surfaces project; surveys, check shots and picks
-from the author's data engine. Built with SubScout by Adam McCarthy (github.com/AdmcCarthy/kit-subscout). No
+from the author's data engine. Built with SubScout by Adam McCarthy (github.com/AdmcCarthy/core-subscout). No
 endorsement by Equinor, the former partners or Sodir is implied. Numbers, methods and sources follow in the
 basis of analysis.

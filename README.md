@@ -1,7 +1,7 @@
 # Pinpoints and Echoes
 
 A data story about how uncertain subsurface interpretation is, and why it can still be trusted. Live page:
-<https://admccarthy.github.io/ds-pinpoints-and-echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/kit-subscout);
+<https://admccarthy.github.io/ds-pinpoints-and-echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/core-subscout);
 the argument is field-independent and the worked case is Volve. Plan: [`docs/plan.md`](docs/plan.md); comparatives
 research: [`docs/comparatives.md`](docs/comparatives.md); the original outline: [`docs/outline-v2.md`](docs/outline-v2.md).
 
@@ -84,4 +84,4 @@ work says so visibly and does not imply endorsement. It is custom wording and no
 
 The data extracts keep their own terms: Sodir (NLOD 2.0, "Source: Sodir") and the Volve data village (Volve Terms and
 Conditions, CC BY 4.0 based with a no-sale condition). Details and attribution lines: [DATA-LICENCE.md](DATA-LICENCE.md).
-Built with SubScout by Adam McCarthy (https://github.com/AdmcCarthy/kit-subscout).
+Built with SubScout by Adam McCarthy (https://github.com/AdmcCarthy/core-subscout).

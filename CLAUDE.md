@@ -8,7 +8,7 @@ A SubScout story about how uncertain geoscience interpretation is. **Status: ful
 worked case, not the subject. Owner: Adam McCarthy, petroleum geoscience domain expert. Plan in
 `docs/plan.md`; `story/story.py` computes every number from the extracts in `story/data/`.
 
-- Built with SubScout (github.com/AdmcCarthy/kit-subscout). Follow SubScout's CLAUDE.md and styleguide
+- Built with SubScout (github.com/AdmcCarthy/core-subscout). Follow SubScout's CLAUDE.md and styleguide
   for colour, type, registers, confidence language, tables, maps and performance.
 - The thesis and voice are in README.md. Keep them: confident about the mechanism, explicit about
   the uncertainty.
@@ -17,7 +17,7 @@ worked case, not the subject. Owner: Adam McCarthy, petroleum geoscience domain 
 - No numbers in prose until computed from data. every figure in `story/story.md` is a `{{ metric }}`.
 - Dataset terms and attribution lines come from Idiom `DATASETS.md`; they are recorded in `DATA-LICENCE.md`. Raw Volve data is never committed.
 - Before showing prose: `python ../../shared/idiom/scripts/check_banned.py story/story.md` and `check_voice.py --mode published`.
-- Before publishing: SubScout's readability gate, `uv run --project ../kit-subscout python ../kit-subscout/scripts/readability.py _site`,
+- Before publishing: SubScout's readability gate, `uv run --project ../core-subscout python ../core-subscout/scripts/readability.py _site`,
   must pass on all five viewports. On a 360 px phone a step card gets about 300 px under the pinned figure, so keep
   cards short and custom figures at about 28 % of the viewport height when narrow.
 - British English, metric first (Sm³) with boe alongside.
