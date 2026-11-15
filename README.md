@@ -1,5 +1,8 @@
 # Pinpoints and Echoes
 
+[![Pages](https://github.com/AdmcCarthy/ds-pinpoints-and-echoes/actions/workflows/pages.yml/badge.svg)](https://github.com/AdmcCarthy/ds-pinpoints-and-echoes/actions/workflows/pages.yml)
+[![Licence](https://img.shields.io/badge/licence-MIT%20with%20acknowledgement-lightgrey)](LICENSE)
+
 A data story about how uncertain subsurface interpretation is, and why it can still be trusted. Live page:
 <https://admccarthy.github.io/ds-pinpoints-and-echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/core-subscout);
 the argument is field-independent and the worked case is Volve. Plan: [`docs/plan.md`](docs/plan.md); comparatives
