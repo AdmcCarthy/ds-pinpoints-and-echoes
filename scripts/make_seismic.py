@@ -3,7 +3,7 @@ well, the single trace at the well, and the dominant frequency around the reserv
 
 Needs segyio and numpy only:
 
-    python -I scripts\make_seismic.py ^
+    python -I scripts\\make_seismic.py ^
         --segy "C:\\appl\\Volve\\Seismic\\ST10010ZC11_PZ_PSDM_KIRCH_FULL_T.MIG_FIN.POST_STACK.3D.JS-017536.segy" ^
         --x 436123.2 --y 6479126.0 --well "15/9-F-11 T2"
 
