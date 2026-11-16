@@ -28,7 +28,7 @@ Licences and attribution lines: [`../DATA-LICENCE.md`](../DATA-LICENCE.md). Open
 - The well throughout the Volve beats is 15/9-F-11 T2; its time comes from check shot 1 (near offset).
 - The seismic polarity is not stated by the data; the synthetic is drawn with the better-matching sign and says so.
 - The closure curve is from a smoothed, interpreted surface; the volume simulation uses parameters chosen for the story and is not a Volve estimate.
-- Raw Volve files stay outside the repository (`C:ppl\Volve`); the scripts read them from there.
+- Raw Volve files stay outside the repository (`C:\appl\Volve`); the scripts read them from there.
 
 ## Open
 
