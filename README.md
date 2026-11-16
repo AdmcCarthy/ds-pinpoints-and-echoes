@@ -15,10 +15,10 @@ Data extracts are written by the scripts in `scripts/` from local copies of the 
 SubScout from `story/`.
 
 ```powershell
-# extracts (the ep and seismic_lib interpreters hold the dependencies)
+# extracts (any Python with the dependencies: segyio and numpy for the seismic extract)
 ..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_extracts.py --ep ..\ep_geoscience_analytics
 ..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_spread.py --ep ..\ep_geoscience_analytics --zip C:\appl\Volve\Volve_Geophysical_Interpretations.zip
-..\seismic_lib\.venv\Scripts\python.exe -I scripts\make_seismic.py --segy "C:\appl\Volve\Seismic\ST10010ZC11_PZ_PSDM_KIRCH_FULL_T.MIG_FIN.POST_STACK.3D.JS-017536.segy" --x 436123.2 --y 6479126.0 --well "15/9-F-11 T2"
+python -I scripts\make_seismic.py --segy "C:\appl\Volve\Seismic\ST10010ZC11_PZ_PSDM_KIRCH_FULL_T.MIG_FIN.POST_STACK.3D.JS-017536.segy" --x 436123.2 --y 6479126.0 --well "15/9-F-11 T2"
 ..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_beats.py --ep ..\ep_geoscience_analytics --volve C:\appl\Volve --surfaces ..\kit-surfaces
 # story/data/header.json is the synthetic header band, made once by the author's seismic-art tool and kept as it is
 # page (SubScout is a sibling checkout; GitHub Pages builds the same way from SubScout main)
