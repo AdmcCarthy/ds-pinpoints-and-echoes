@@ -5,6 +5,10 @@ where that number comes from. A value marked *found* was read from the mid-layer
 value marked *to compute* or *to source* does not exist yet. None of these numbers will be typed into the prose: each
 becomes a `story.py` metric.*
 
+*Kept as the record of the Phase 1 gate. The published story (merged 2026-11-18) supersedes it: its numbers are computed in
+`story/story.py` and checked by `tests/test_numbers.py`, the value of information (10.4) was replaced by break-even prices, and
+the rulings below replaced the review-status wording. The markers above show what existed at the gate.*
+
 ## Spine
 
 The page climbs about twelve orders of magnitude, from the pore throat (about 10⁻⁶ m) to the North Sea (about 10⁶ m). Two
@@ -33,7 +37,7 @@ sea." The wording will be checked against the voice checkers in Phase 4.
 
 | Step | Figure | Number | Source, confidence |
 |---|---|---|---|
-| 2.1 | `pore` (diagram: grains, throats, flow) | Flow through a tube scales with the fourth power of its radius, so halving a throat cuts the flow sixteenfold | Poiseuille's law, textbook; diagram Interpreted. To source: a reviewed text in core-knowledge |
+| 2.1 | `pore` (diagram: grains, throats, flow) | Flow through a tube scales with the fourth power of its radius, so halving a throat cuts the flow sixteenfold | Poiseuille's law, textbook; diagram Interpreted. To source: a reviewed text in the private knowledge store |
 | 2.2 | `pore` with mercury curve | 11 samples from 15/9-19 A; the throats a mercury curve reaches run from about 0.03 to 263 µm | `well_core_mercury_injection` (report pages 213 to 224); *candidate, not yet reviewed* *found* |
 | 2.3 | `pore`, R35 marked | Throat radius at 35 % mercury saturation, read from each curve | Derived from the candidates *to compute* |
 
@@ -87,7 +91,7 @@ sea." The wording will be checked against the voice checkers in Phase 4.
 
 | Step | Figure | Number | Source, confidence |
 |---|---|---|---|
-| 9.1 | `cascade` (one factor) | Area alone: P90 to P10 | ep-prospect Monte Carlo, fixed seed; Interpreted *to compute* |
+| 9.1 | `cascade` (one factor) | Area alone: P90 to P10 | Monte Carlo with the prospect library, fixed seed; Interpreted *to compute* |
 | 9.2 | `cascade` (factors added one by one) | P10/P90 widens; the existing run gives 7.9 to 33.9 (a factor of about 4.3) with five factors | `beats_notes.json` volumes; Interpreted *found* (to be rerun) |
 | 9.3 | `cascade`, correlated against independent | Porosity, permeability and saturation move together in the plugs; treating them as independent narrows the spread | the correlation from `well_core_plug`; Derived *to compute* |
 
@@ -96,9 +100,9 @@ sea." The wording will be checked against the voice checkers in Phase 4.
 | Step | Figure | Number | Source, confidence |
 |---|---|---|---|
 | 10.1 | `money` (Volve NPV against price) | Pre-tax NPV USD 500 million at USD 40/bbl, USD 2,267 million at USD 80; break-even about USD 29/bbl | `field_economics`; Derived, with screening assumptions for opex, tax and abandonment *found* |
-| 10.2 | `money` (the prospect) | Chance of success, NPV if found, cost of a dry hole, expected value | ep-prospect and ep-economics on a synthetic prospect with stated assumptions (`data/assumptions.yaml`); Interpreted *to compute* |
+| 10.2 | `money` (the prospect) | Chance of success, NPV if found, cost of a dry hole, expected value | the prospect and economics libraries on a synthetic prospect with stated assumptions (`data/assumptions.yaml`); Interpreted *to compute* |
 | 10.3 | `money`, the base rate | The share of North Sea exploration wells that made a discovery, as the prior on chance | Sodir wellbores; Observed *to compute* |
-| 10.4 | `money`, value of information | What one more measurement is worth before the drill-or-drop vote | ep-prospect VOI; Interpreted *to compute* |
+| 10.4 | `money`, value of information | What one more measurement is worth before the drill-or-drop vote | value of information from the prospect library; Interpreted *to compute* |
 
 ### 11. The test (return to the moment)
 

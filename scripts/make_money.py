@@ -18,7 +18,7 @@ The prospect (Interpreted, from data/assumptions.yaml and story/data/cascade.csv
   discovery; commercial, the share of wildcats in an older window whose discovery is producing, shut down, approved for
   production or included in a field.
 - Dry-hole cost: the median drilling days of North Sea wildcats since 2015 (Sodir) times an assumed daily spread cost.
-- The drill decision: EMV and the break-even chance, from ep-prospect's decision module.
+- The drill decision: EMV and the break-even chance, from the prospect library's decision module (ep_prospect.decision).
 - The sanction decision: NPV against price for the P90, P50 and P10 volumes, and the break-even price of each.
 Writes volve_money.csv, prospect_npv.csv, prospect_price.csv, prospect_curve.csv and money_notes.json.
 """

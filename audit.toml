@@ -1,3 +1,5 @@
 [repo]
 name = "ds-pinpoints-and-echoes"
-depends_on = ["core-subscout"]   # story/story.py runs inside SubScout; the build checks it out (no pyproject here)
+# story/story.py runs inside SubScout; the build checks it out (no pyproject here). The extract scripts in scripts/ run with the
+# data engine's interpreter and import ep_prospect and ep_seismic from it.
+depends_on = ["core-subscout", "ep-geoscience-analytics", "ep-prospect", "ep-seismic"]

@@ -6,7 +6,7 @@ GRV (gross rock volume) is the rock between the Hugin top and the oil-water cont
 thickness: GRV = integral of A(z) dz from max(crest, contact - thickness) to the contact, where A(z) is the area of the
 Volve high above depth z (story/data/closure.csv, kit-surfaces). The contact is drawn from the 2005 plan's distribution
 (story/data/contact.csv); a contact deeper than the mapped surface takes its deepest area, and the share of such draws
-is reported. The other factors are the stated ranges in data/assumptions.yaml, fitted with ep-prospect's families
+is reported. The other factors are the stated ranges in data/assumptions.yaml, fitted with the prospect library's families (ep_prospect)
 (lognormal, logit-normal) and sampled with one fixed seed, so every step uses the same draws.
 
 Step 0 frees the contact and the thickness (together they are the rock volume) and holds the rest at their P50; each later

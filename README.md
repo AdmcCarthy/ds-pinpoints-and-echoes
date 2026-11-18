@@ -25,7 +25,7 @@ Every claim carries one of three words: **Observed**, **Derived** or **Interpret
 
 ## Build
 
-Extracts are written from local data that is never committed: the `ep-geoscience-analytics` mid-layer, the Volve archive
+Extracts are written from local data that is never committed: the Parquet mid-layer of a private data engine, the Volve archive
 (`C:\appl\Volve`) and `kit-surfaces`. One script per section; `scripts/make_all.ps1` runs them in order with the ep interpreter
 in isolated mode. Stated assumptions for the compounding and money sections are in [`data/assumptions.yaml`](data/assumptions.yaml).
 
