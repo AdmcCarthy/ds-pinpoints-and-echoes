@@ -1,9 +1,9 @@
 """Shared paths and helpers for the extract scripts.
 
-Every script reads the ep_geoscience_analytics mid-layer (Parquet) or the local Volve archive and writes small files to
+Every script reads the ep-geoscience-analytics mid-layer (Parquet) or the local Volve archive and writes small files to
 story/data/. Run them with the ep interpreter in isolated mode, for example:
 
-    ..\\ep_geoscience_analytics\\.venv\\Scripts\\python.exe -I scripts\\make_core.py --ep ..\\ep_geoscience_analytics
+    ..\\ep-geoscience-analytics\\.venv\\Scripts\\python.exe -I scripts\\make_core.py --ep ..\\ep-geoscience-analytics
 """
 
 from __future__ import annotations

@@ -1,7 +1,7 @@
 # Rebuild every extract in story/data/, in dependency order (field before cascade, cascade before money and test).
 # Paths default to the sibling checkouts and the local Volve archive; override them with the parameters.
 param(
-    [string]$Ep = "..\ep_geoscience_analytics",
+    [string]$Ep = "..\ep-geoscience-analytics",
     [string]$Volve = "C:\appl\Volve",
     [string]$Surfaces = "..\kit-surfaces"
 )
