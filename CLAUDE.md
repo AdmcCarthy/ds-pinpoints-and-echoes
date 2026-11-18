@@ -5,7 +5,7 @@
 Voice, working rules and dataset terms follow Idiom (`CORE.md`, `DATASETS.md`, `house/`; private repo, normally linked at `../../shared/idiom`). The import is harmless when the file is absent (CI).
 
 A SubScout story about scale and compounding uncertainty, from the pore throat to the North Sea and the decision. **Status:
-remake built on branch `remake` (2026-11-18), awaiting Adam's review before merge**; the first story is the local tag
+remake merged to main and published (2026-11-18; needs SubScout v0.16.0 or later)**; the first story is the local tag
 `v1-final`. Volve is the worked case, not the subject. Owner: Adam McCarthy, petroleum geoscience domain expert. Plan in
 `docs/plan.md`, outline and rulings in `docs/outline.md`; `story/story.py` computes every number from the extracts in
 `story/data/`, written by `scripts/make_all.ps1`; `tests/test_numbers.py` checks them.

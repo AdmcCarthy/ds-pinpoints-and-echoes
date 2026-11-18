@@ -29,11 +29,10 @@ decision is still reached, owned and tested against what the field later gave.
 | 2 | Scripts, one per section (`make_core`, `make_log`, `make_wells`, `make_seismic`, `make_field`, `make_cascade`, `make_money`, `make_test`); `story.py`; `tests/test_numbers.py` | done: 9 tests pass |
 | 3 | Figures: `ladder` (and the ladder strip in every figure), `ledger`, `pore`, `plugs`, `corelog`, `cascade`, `money`, `volve`, and rewritten wells, log, section, wedge, tie, fan, transect, closure | done: looked at on 360 px and 1440 px |
 | 4 | `story.md` and the appendix; Idiom checkers | done: checkers clean, build 0 warnings |
-| 5 | Readability gate, snapshots, README | gate passes on five viewports; **Adam reviews before merge** |
+| 5 | Readability gate, snapshots, README | done: gate passes on five viewports; merged to main and pushed 2026-11-18 |
 
-The story is one arc (`arc: zoom`). That needed a SubScout change, made on core-subscout branch `whole-story-arc`
-(2026-11-18, Adam's choice): present mode runs every sequence as one deck, and the arc check accepts zoom's returning
-moment. The Pages workflow checks out SubScout main, so that branch must be merged and tagged before this one.
+The story is one arc (`arc: zoom`). That needed a SubScout change (2026-11-18, Adam's choice), released as SubScout v0.16.0:
+present mode runs every sequence as one deck, and the arc check accepts zoom's returning moment.
 
 ## Data in use
 

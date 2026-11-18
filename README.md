@@ -48,8 +48,7 @@ uv run --project ..\core-subscout python ..\core-subscout\scripts\readability.py
 | `make_money.py` | the money | `volve_money.csv`, `prospect_*.csv`, `money_notes.json` |
 | `make_test.py` | the test | `volve_reserves.csv`, `revisions.csv`, `test_notes.json` |
 
-The page needs SubScout with the whole-story present deck and the returning-beat arc check (core-subscout branch
-`whole-story-arc`, to be released as the next tag).
+The page needs SubScout v0.16.0 or later: the whole-story present deck and the returning-beat arc check.
 
 ## Licence and acknowledgement
 
