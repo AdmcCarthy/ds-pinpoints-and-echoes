@@ -1,83 +1,54 @@
 # Pinpoints and Echoes
 
 [![Pages](https://github.com/AdmcCarthy/ds-pinpoints-and-echoes/actions/workflows/pages.yml/badge.svg)](https://github.com/AdmcCarthy/ds-pinpoints-and-echoes/actions/workflows/pages.yml)
+[![Python](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/)
 [![Licence](https://img.shields.io/badge/licence-MIT%20with%20acknowledgement-lightgrey)](LICENSE)
 
-A data story about how uncertain subsurface interpretation is, and why it can still be trusted. Live page:
-<https://admccarthy.github.io/ds-pinpoints-and-echoes/>. Built with [SubScout](https://github.com/AdmcCarthy/core-subscout);
-the argument is field-independent and the worked case is Volve. Plan: [`docs/plan.md`](docs/plan.md); comparatives
-research: [`docs/comparatives.md`](docs/comparatives.md); the original outline: [`docs/outline-v2.md`](docs/outline-v2.md).
+A data story about scale and compounding uncertainty: how a measurement made in a pore throat a few micrometres across is
+carried up through the plug, the log, the well, the echo and the field to a decision about the North Sea, and how the
+uncertainty of each step widens the range the decision rests on. Live page: <https://admccarthy.github.io/ds-pinpoints-and-echoes/>.
+Built with [SubScout](https://github.com/AdmcCarthy/core-subscout); Volve is the worked case and Sodir's records cover the
+shelf.
 
-## Build
-
-Data extracts are written by the scripts in `scripts/` from local copies of the Volve data (`C:\appl\Volve`, never committed), the
-`ep_geoscience_analytics` mid-layer and `kit-surfaces`; the small results are committed in `story/data/`. The page is built by
-SubScout from `story/`.
-
-```powershell
-# extracts (any Python with the dependencies: segyio and numpy for the seismic extract)
-..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_extracts.py --ep ..\ep_geoscience_analytics
-..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_spread.py --ep ..\ep_geoscience_analytics --zip C:\appl\Volve\Volve_Geophysical_Interpretations.zip
-python -I scripts\make_seismic.py --segy "C:\appl\Volve\Seismic\ST10010ZC11_PZ_PSDM_KIRCH_FULL_T.MIG_FIN.POST_STACK.3D.JS-017536.segy" --x 436123.2 --y 6479126.0 --well "15/9-F-11 T2"
-..\ep_geoscience_analytics\.venv\Scripts\python.exe -I scripts\make_beats.py --ep ..\ep_geoscience_analytics --volve C:\appl\Volve --surfaces ..\kit-surfaces
-# story/data/header.json is the synthetic header band, made once by the author's seismic-art tool and kept as it is
-# page (SubScout is a sibling checkout; GitHub Pages builds the same way from SubScout main)
-cd ..\core-subscout; uv run subscout build ..\ds-pinpoints-and-echoes\story --out ..\ds-pinpoints-and-echoes\_site
-# readability gate: every step legible on three phone and two desktop sizes (needs `uv run playwright install chromium` once)
-uv run python scripts\readability.py ..\ds-pinpoints-and-echoes\_site
-```
-
-## The thesis
-
-Interpreting the subsurface is honest persuasion. Geoscientists build confident cases from sparse,
-indirect evidence (wells are pinpoints, seismic is an echo) while keeping observation separate
-from interpretation.
-
-The voice is the interpreter's voice: **confident about the mechanism, explicit about the
-uncertainty.**
+The remake (2026-11-18) replaced the first story, which is kept as the local tag `v1-final`. Plan: [`docs/plan.md`](docs/plan.md);
+step-by-step outline with every number's source: [`docs/outline.md`](docs/outline.md).
 
 ## The story
 
-A data narrative about how uncertain geoscience interpretation is, and why it can still be trusted.
-The reader should leave able to tell an observation from an interpretation in any subsurface claim,
-and know which questions to ask about the uncertainty behind it.
+About eleven orders of magnitude, climbed in order: pore throat, sand grain, plug, log sample, wellbore, the thinnest bed the
+echo resolves, the spacing between wells, the field, the North Sea. A scale ladder along the top of every figure marks the rung.
+Each rung leaves a range open, and the ranges meet in the volume of oil and its value: the story multiplies them in a Monte Carlo,
+links the rock properties that move together, sets the result against price and the chance of success, and tests it against
+Sodir's own revisions. The arc is SubScout's `zoom`: the decision, the context from pore to basin, the decision again.
 
-- **Working title:** Pinpoints and Echoes
-- **Standfirst (draft):** Every map of the subsurface is mostly inference. A handful of
-  boreholes and the echoes of sound waves become a confident picture of rocks no one has seen. Here
-  is how that picture is built, how wrong it can be, and why it is still worth trusting.
-- **Arc:** *pre-drill / post-drill* (prediction → result → what we learned), framed by the
-  observation → interpretation ladder.
-- **Register:** *Section* (feature) by default, with an *Outcrop* (showpiece) opening hook.
-- **Confidence language:** every claim is tagged **Observed**, **Derived** or **Interpreted**, and the
-  story teaches the reader to use the same three words.
+Every claim carries one of three words: **Observed**, **Derived** or **Interpreted**. P90 is the low case.
 
-The beat-by-beat outline is in [`story/story.md`](story/story.md).
+## Build
 
-## Signature devices to try
+Extracts are written from local data that is never committed: the `ep_geoscience_analytics` mid-layer, the Volve archive
+(`C:\appl\Volve`) and `kit-surfaces`. One script per section; `scripts/make_all.ps1` runs them in order with the ep interpreter
+in isolated mode. Stated assumptions for the compounding and money sections are in [`data/assumptions.yaml`](data/assumptions.yaml).
 
-| Device | Purpose |
-|---|---|
-| Wellbores at true scale on a basin map | The opening hook: how little of the subsurface is ever sampled |
-| Composite log | What a well actually observes: one dimension, centimetres around the hole |
-| Seismic wiggle traces | The echo: reflections in two-way time, not depth; limited resolution |
-| Several interpreters, one dataset | Different valid horizon picks from the same seismic |
-| Depth-conversion fan | How velocity uncertainty becomes a range of possible depths |
-| P90 / P50 / P10 volumes | Uncertainty carried through to the number people quote |
-| Pre-drill vs post-drill | The honest test: predictions against outcomes |
-| "Cut the map" | A line across the map opens a cross-section beneath it |
+```powershell
+.\scripts\make_all.ps1                     # all extracts into story/data/
+# story/data/header.json is the synthetic header band, made once by the author's seismic-art tool and kept as it is
+uv run --project ..\core-subscout subscout build story --out _site
+uv run --project ..\core-subscout pytest tests                                   # every quoted number against the extracts
+uv run --project ..\core-subscout python ..\core-subscout\scripts\readability.py _site   # five viewports
+```
 
-## Data in use
+| Script | Section | Writes |
+|---|---|---|
+| `make_core.py` | the pore and the plug | `micp.csv`, `micp_samples.csv`, `plugs.csv`, `core_notes.json` |
+| `make_log.py` | the log | `log.csv`, `core_log_pairs.csv`, `log_notes.json` |
+| `make_wells.py` | the pinpoint and the basin | `wells.csv`, `geometry.csv`, `chain.csv`, `wells_notes.json` |
+| `make_seismic.py` | the echo | `section.json`, `trace.csv`, `horizons.csv`, `tie.csv`, `wedge.json`, `timedepth.csv`, `seismic_notes.json` |
+| `make_field.py` | the field | `spread.csv`, `transect.csv`, `picks.csv`, `closure.csv`, `contact.csv`, `field_notes.json` |
+| `make_cascade.py` | compounding | `cascade.csv`, `cascade_hist.csv`, `cascade_notes.json` |
+| `make_money.py` | the money | `volve_money.csv`, `prospect_*.csv`, `money_notes.json` |
+| `make_test.py` | the test | `volve_reserves.csv`, `revisions.csv`, `test_notes.json` |
 
-Sodir FactPages (wellbores, fields, reserves) and the Volve data village (logs, seismic, interpretations, check shots, surveys, the 2005 plan's contact distribution via kit-surfaces). Terms in `DATA-LICENCE.md`. Candidates considered and not used:
-
-- Norwegian Offshore Directorate (Sodir) FactPages / FactMaps: wellbores, discoveries, fields.
-- Equinor's Volve field data release: seismic, well logs and production for one field.
-- Netherlands NLOG (TNO): wells and seismic for the Dutch sector.
-- UK North Sea Transition Authority National Data Repository: wells and seismic.
-- The F3 Netherlands seismic block (dGB Earth Sciences), widely used for interpretation teaching.
-
-See [`data/README.md`](data/README.md).
+The page needs SubScout v0.16.0 or later: the whole-story present deck and the returning-beat arc check.
 
 ## Licence and acknowledgement
 
@@ -85,6 +56,7 @@ MIT License with Acknowledgement (see [LICENSE](LICENSE)): the MIT licence plus 
 work says so visibly and does not imply endorsement. It is custom wording and not OSI-approved. Use the line:
 "Built with Pinpoints and Echoes by Adam McCarthy (https://github.com/AdmcCarthy/ds-pinpoints-and-echoes)".
 
-The data extracts keep their own terms: Sodir (NLOD 2.0, "Source: Sodir") and the Volve data village (Volve Terms and
-Conditions, CC BY 4.0 based with a no-sale condition). Details and attribution lines: [DATA-LICENCE.md](DATA-LICENCE.md).
-Built with SubScout by Adam McCarthy (https://github.com/AdmcCarthy/core-subscout).
+The data extracts keep their own terms: Sodir (NLOD 2.0, "Source: Sodir"), the Volve data village (Volve Terms and
+Conditions, CC BY 4.0 based with a no-sale condition) and the price and exchange-rate series used only as derived values.
+Details and attribution lines: [DATA-LICENCE.md](DATA-LICENCE.md). Built with SubScout by Adam McCarthy
+(https://github.com/AdmcCarthy/core-subscout).

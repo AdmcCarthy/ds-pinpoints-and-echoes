@@ -1,0 +1,8 @@
+step,key,label,p90,p50,p10,mean,ratio,sd_log10
+0,rock_volume,how much rock lies above the contact,10.9666,19.4619,39.0876,20.6216,3.5642,0.1875
+1,ntg,share of the thickness that is reservoir,8.3814,19.0393,36.0063,20.0844,4.296,0.2066
+2,porosity,porosity,8.1435,18.9758,35.392,20.1702,4.3461,0.2128
+3,hc_saturation,oil saturation,7.4149,18.5947,34.7618,19.9546,4.6881,0.2237
+4,bo,oil shrinkage to the surface (Bo),7.3627,18.5755,34.8607,19.9928,4.7348,0.2253
+5,recovery,recovery factor,6.6508,18.3724,35.8139,20.1431,5.3849,0.2415
+6,correlated,rock properties that move together,5.1184,18.6334,39.6616,21.2643,7.7488,0.283

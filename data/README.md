@@ -1,36 +1,34 @@
 # Data
 
-Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committed in `story/data/`, written by `scripts/make_extracts.py` from the `ep-geoscience-analytics` mid-layer. Heavy ingestion stays there.
+Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committed in `story/data/`, written by the scripts in
+`scripts/` (one per section, run in order by `scripts/make_all.ps1`). Heavy ingestion stays in `ep_geoscience_analytics`.
+Stated assumptions for the compounding and money sections are in [`assumptions.yaml`](assumptions.yaml).
 
 ## In use
 
-| File | From | Used for |
+| File | From | Section |
 |---|---|---|
-| `story/data/wells.csv` | Sodir wellbore table: North Sea petroleum wellbores, wellhead positions | hook, ladder |
-| `story/data/geometry.csv` | the same, plus the Volve reservoir hole diameter | hook, ladder |
-| `story/data/chain.csv` | Volve survey, check-shot and horizon-to-pick checks | error stack |
-| `story/data/spread.csv`, `transect.csv`, `picks.csv` | Volve base (ST0202R08) and reprocessed (ST10010) versions of four horizons, and the well picks, in two-way time | interpretation spread |
-| `story/data/log.csv` | Volve 15/9-F-11 T2 composite log (four curves, 0.5 m) with depth and time from check shot 1 | observation |
-| `story/data/section.json`, `horizons.csv` | ST10010 full-stack inline 10215 (int8, every second crossline, 1,800 to 3,300 ms) and the published horizons along it | echo |
-| `story/data/wedge.json` | Synthetic wedge at the data's centroid frequency and the log's reservoir velocity | echo (resolution) |
-| `story/data/tie.csv`, `trace.csv` | Synthetic seismogram from the log and the real trace at the well | tie |
-| `story/data/timedepth.csv` | Every Volve check-shot table, decimated, plus the reading at 2,650 ms | depth fan |
-| `story/data/closure.csv`, `contact.csv` | Area against depth of the Volve high on the Hugin top (kit-surfaces) and the 2005 plan's contact distribution | volumes |
-| `story/data/volumes.csv` | Exceedance curve of the illustrative simulation (seed 7, 20,000 draws) | volumes |
-| `story/data/volve_reserves.csv`, `revisions.csv` | Sodir recoverable estimates of Volve by year, and first-to-latest ratios of 59 fields | test |
-| `story/data/beats_notes.json` | Method notes and summary numbers written by `make_beats.py`, read as metrics | several |
+| `micp.csv`, `micp_samples.csv` | Eleven mercury-injection curves of 15/9-19 A (report pages 213 to 224), with R35 and the fitted throat relation | the pore |
+| `plugs.csv` | 860 routine plugs of 15/9-19 A and BT2: Klinkenberg permeability, helium porosity, fitted R35 | the plug |
+| `core_notes.json` | Plug counts and ranges, the fit, the plug volume, Sodir's North Sea core lengths | pore, plug, decision |
+| `log.csv`, `core_log_pairs.csv`, `log_notes.json` | 15/9-F-11 T2 composite log; core against interpreted log permeability | the log |
+| `wells.csv`, `geometry.csv`, `chain.csv` | Sodir North Sea wellheads, spacing, hole diameter; Volve error links | pinpoint, basin |
+| `section.json`, `trace.csv`, `horizons.csv`, `tie.csv`, `wedge.json`, `timedepth.csv` | ST10010 inline 10215, the trace at the well, published horizons, the tie, a synthetic wedge, every check-shot table | the echo |
+| `spread.csv`, `transect.csv`, `picks.csv`, `closure.csv`, `contact.csv` | Two published versions of four horizons; area against depth on the Hugin top; the 2005 plan's contacts | the field |
+| `cascade.csv`, `cascade_hist.csv` | The volumetric Monte Carlo, one factor added per step, then the linked case | compounding |
+| `volve_money.csv`, `prospect_*.csv`, `money_notes.json` | Volve's investment and production; the prospect's value against price, its spread and the value of drilling | the money |
+| `volve_reserves.csv`, `revisions.csv` | Sodir's estimates of Volve by year; first-to-latest ratios of 59 fields | the test |
 
-Licences and attribution lines: [`../DATA-LICENCE.md`](../DATA-LICENCE.md). Open items there: the Sodir NLOD version and the Volve licence wording.
+Licences and attribution lines: [`../DATA-LICENCE.md`](../DATA-LICENCE.md).
 
 ## Assumptions worth knowing
 
 - Positions are wellhead positions; the study area is the convex hull of them, not the sea.
-- The well throughout the Volve beats is 15/9-F-11 T2; its time comes from check shot 1 (near offset).
-- The seismic polarity is not stated by the data; the synthetic is drawn with the better-matching sign and says so.
-- The closure curve is from a smoothed, interpreted surface; the volume simulation uses parameters chosen for the story and is not a Volve estimate.
-- Raw Volve files stay outside the repository (`C:\appl\Volve`); the scripts read them from there.
-
-## Open
-
-- The spread beat uses published Volve versions only (two surveys, not blind interpreters; the story says so). Independent picks could be added later.
-- The test beat uses Sodir's annual estimates rather than a pre-drill prognosis; the published look-back studies in `docs/comparatives.md` remain unverified.
+- R35 is read from each mercury curve; the throat relation is fitted on the eight samples with a porosity (Winland's form,
+  this field's coefficients).
+- Plug volume takes each plug as long as it is wide; the report gives the diameters only.
+- The cascade's ranges are the story's stated assumptions, not Volve's estimates; the contact distribution and the area curve
+  are Volve's.
+- Money is pre-tax, real 2025 USD at 8 %; opex, tariffs, abandonment and tax are the data engine's screening assumptions.
+- The dry-hole cost is median drilling days times an assumed 1 million USD a day.
+- The seismic polarity is not stated by the data; the synthetic is drawn with the better-matching sign.

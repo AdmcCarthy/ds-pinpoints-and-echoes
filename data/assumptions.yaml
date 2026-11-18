@@ -1,0 +1,27 @@
+# Stated assumptions for the compounding and money sections. Every value here is Interpreted: chosen for the story,
+# shown on the page and listed in Basis of analysis. P90 is the low case (exceedance convention).
+# Anchors in the comments are the data each range was set against; the ranges were not tuned to match any outcome.
+
+seed: 20261118
+draws: 50000
+
+# The volumetric chain, in the order the factors are added. The contact is not here: it is the 2005 plan's own
+# distribution (story/data/contact.csv), applied to the area-depth curve of the Hugin top (story/data/closure.csv).
+factors:
+  thickness_m:   {kind: lognormal,   p90: 80.0,  p50: 100.0, p10: 120.0, label: "gross reservoir thickness", anchor: "Hugin 101 m at 15/9-F-11 T2"}
+  ntg:           {kind: logitnormal, p90: 0.60,  p50: 0.75,  p10: 0.90,  label: "share of the thickness that is reservoir", anchor: "none: a range"}
+  porosity:      {kind: logitnormal, p90: 0.17,  p50: 0.20,  p10: 0.23,  label: "porosity", anchor: "plug median 19.3 %"}
+  hc_saturation: {kind: logitnormal, p90: 0.55,  p50: 0.68,  p10: 0.80,  label: "oil saturation", anchor: "none: a range"}
+  bo:            {kind: lognormal,   p90: 1.15,  p50: 1.25,  p10: 1.35,  label: "oil shrinkage to the surface (Bo)", anchor: "none: a range"}
+  recovery:      {kind: logitnormal, p90: 0.30,  p50: 0.40,  p10: 0.50,  label: "recovery factor", anchor: "none: a range"}
+
+# Rock properties move together: the plugs' log permeability and porosity have r about 0.83. The correlated case
+# links net-to-gross, porosity, oil saturation and recovery through one shared rock-quality factor with this loading.
+rock_quality_correlation: 0.6
+
+# The prospect (synthetic): a Volve-sized find developed as a subsea tie-back. The price spread is not set here: it is
+# the 10th, 50th and 90th percentile of the annual Brent average in real 2025 USD over price_years (ep macro, IMF).
+prospect:
+  price_years: [2005, 2024]
+  spread_cost_usd_mn_per_day: 1.0       # all-in daily cost of an exploration well (rig, services, materials)
+  commercial_window: [2000, 2014]       # wildcats old enough for a discovery to have been developed

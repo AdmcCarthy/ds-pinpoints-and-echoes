@@ -1,107 +1,47 @@
-# Plan: Pinpoints and Echoes
+# Plan: the remake
 
-*Drafted 2026-11-08. A plan for expanding the placeholder into a public SubScout story. Nothing here is built. Every number below is a thing to compute or verify, not a result.*
+*Approved 2026-11-18. The first story (31 steps, built 2026-11-09) is tagged `v1-final` and stays live until this remake is
+merged. Work happens on the branch `remake`. The step-by-step outline and its number ledger are in
+[`outline.md`](outline.md).*
 
 ## Thesis
 
-A decision worth hundreds of millions rests on almost nothing measured. A wellbore is a few tens of centimetres wide. A field is a few kilometres across. The North Sea is hundreds of thousands of square kilometres. Between the wells, the picture comes from echoes that return from kilometres down, and each of them carries an error. The story shows how a confident picture is built from that, how wrong it can be, and why it can still be trusted.
+A decision worth more than a billion dollars rests on a few cubic metres of measured rock. The measurements start at the pore
+throat, a few micrometres across. They are carried up through the plug, the log, the well, the echo and the field to claims
+about a sea, about eleven orders of magnitude. Each rung adds its own uncertainty, the uncertainties widen together, and the
+decision is still reached, owned and tested against what the field later gave.
 
-Keep the existing voice: confident about the mechanism, explicit about the uncertainty. Keep the three words Observed, Derived, Interpreted.
+## Decisions (2026-11-18)
 
-The title moved from "Pinpricks" to **Pinpoints and Echoes** (README.md, CLAUDE.md and `story/story.md` updated 2026-11-08).
+- **Rebuild everything in place:** same repo and URL; every script, figure and step is new.
+- **Money from both** Volve's real record (Sodir investment and production, Observed and Derived) and a synthetic prospect for
+  the drill-or-drop decision (Interpreted, with stated assumptions).
+- **Plain text, deep appendix:** each step is written for a reader new to the subject. The specialist detail goes in Basis of
+  analysis (`::: appendix`).
+- **Pore throat from both** the mercury-injection curves of 15/9-19 A and a relation fitted on them and applied to all 860 plugs.
 
-## Status 2026-11-09: full narrative built and published
+## Phases and gates
 
-All beats of the outline are built and live at <https://admccarthy.github.io/ds-pinpoints-and-echoes/>: hook, ladder, observation (F-11 T2 log), echo (ST10010 inline and a synthetic wedge), tie, error stack, interpretation spread, depth fan, volumes (closure area, 2005 contact distribution, labelled simulation), test (Sodir estimates of Volve and 59 fields' revisions) and the three-word close. Comparatives used: seafloor mapping (GEBCO 2025), tunnelling (Hoek and Palmieri 1998), weather ensembles (ECMWF). Not used: the unverified look-back figures (Sodir 2.5x, Dutch 58%, Westwood 78%). Open: readability gate not run (needs a Playwright browser download); pre-drill prognosis per well not public.
-
-## Revision 2026-11-08: field independent, Volve as the receipt
-
-The story is about any field, not Volve. Volve is the backing: an open, real case that shows each claim holds with real numbers. Each step in `story/story.md` carries a **Receipt** line saying which Volve evidence (if any) backs it. Two beats need no receipt: the basin-wide hook (Sodir) and the volumes beat (a labelled simulation). Comparatives are researched in [`comparatives.md`](comparatives.md); the narrative was reworked first, as asked. A new beat, *error-stack*, covers "every measurement is uncertain, and they stack", and the ladder beat was split from the hook.
-
-## What we already have
-
-| Source | Holds | Used for |
+| Phase | Work | Gate |
 |---|---|---|
-| `ep_geoscience_analytics` | Sodir wellbores, fields, discoveries, seismic surveys (notebook 17); Volve logs (about 7 GB DLIS/LAS), check shots and time-depth tables, horizon-vs-well-pick checks (347 pairs), fault sticks and polygons, position uncertainty (`xy_sigma_m`, `z_sigma_m`), production | Scale hook, observation, tie, depth, test |
-| `seismic_art` | Synthetic cube with known truth; windows along horizons, wiggle features; rings, growth, flow and cities sketches; Volve exports | Echo beat, the art-led opening and closing visual |
-| `kit-surfaces` | Smoothed Volve horizons in time and depth, fault throw, 132 well picks checked, scale bar and attribution pattern | Map and "cut the map" figures, and the reusable attribution wording |
-| `SubScout` | Story format, arcs (`pre-post-drill`, `zoom`), P90/P50/P10 forms, well symbols, readability gate | The build |
+| 0 | Branch `remake`, local tag `v1-final` | done 2026-11-18 |
+| 1 | `outline.md` with every number and its source; open items | done 2026-11-18 (Adam's rulings in `outline.md`) |
+| 2 | Scripts, one per section (`make_core`, `make_log`, `make_wells`, `make_seismic`, `make_field`, `make_cascade`, `make_money`, `make_test`); `story.py`; `tests/test_numbers.py` | done: 9 tests pass |
+| 3 | Figures: `ladder` (and the ladder strip in every figure), `ledger`, `pore`, `plugs`, `corelog`, `cascade`, `money`, `volve`, and rewritten wells, log, section, wedge, tie, fan, transect, closure | done: looked at on 360 px and 1440 px |
+| 4 | `story.md` and the appendix; Idiom checkers | done: checkers clean, build 0 warnings |
+| 5 | Readability gate, snapshots, README | done: gate passes on five viewports; merged to main and pushed 2026-11-18 |
 
-## The scale ladder (the spine)
+The story is one arc (`arc: zoom`). That needed a SubScout change (2026-11-18, Adam's choice), released as SubScout v0.16.0:
+present mode runs every sequence as one deck, and the arc check accepts zoom's returning moment.
 
-One idea per step, each zoomed out one rung further than the last:
+## Data in use
 
-1. A **wellbore**: diameter in centimetres, sampling a thin cylinder.
-2. A **field** (Volve): all its wells together, as a share of the field's area.
-3. The **North Sea** (Sodir): every wellbore as a dot at true size. They vanish.
-4. The **echo**: the sound path, travel time, wavelength and resolution. Features thinner than about a quarter wavelength blur together.
-5. **Measurement error stacked on it**: position sigma, depth reference, velocity, pick.
+| Source | Tables or files | Terms |
+|---|---|---|
+| ep mid-layer (Volve) | `well_core_plug`, `well_core_mercury_injection`, `well_core_vs_log_summary`, logs, check shots, horizons | Volve Terms and Conditions |
+| ep mid-layer (Sodir) | `well_header`, `reserves_snapshot`, `field_investment_real`, `field_economics` | NLOD 2.0, "Source: Sodir" |
+| ep economics inputs | IMF prices, Norges Bank USDNOK, BLS CPI-U | IMF terms unverified: derived values only |
+| kit-surfaces | `data/out/closures.json`, `contacts.json` | Volve Terms and Conditions |
+| SEG-Y | ST10010ZC11 full stack, one inline | Volve Terms and Conditions |
 
-Every ratio is a `story.py` metric, computed from data and sourced, so no figure is typed into the prose.
-
-## Comparatives from other fields
-
-Each is a *scale comparator* figure: the same ratio, drawn in a familiar setting beside the subsurface one. All outside figures use the `cite:` filter and must be verified before use. I have not checked any of them.
-
-| Analogy | What it conveys |
-|---|---|
-| Opinion polling: a thousand people stand for millions | Sampling, margin of error, and how the sample can be biased |
-| Medical biopsy and ultrasound | A needle sample against an echo image; the same observation/interpretation split |
-| Bat or sonar echolocation | Time is measured, not distance; velocity is assumed |
-| Weather forecast ensembles | A range of outcomes carried through to the number people quote |
-| Mapping the seabed or other planets | We often know remote surfaces better than the one under our own sea |
-| Geotechnical boreholes for a bridge or tunnel | Another trade that infers between holes |
-
-Choose three at most, one per section, so they clarify and do not decorate. Each carries its own source and confidence tag.
-
-## Beats, data and figures
-
-Builds on the existing outline, with the data mapped.
-
-| Beat | Figure | Data | Confidence |
-|---|---|---|---|
-| hook (Outcrop) | Wells at true scale: North Sea, then field, then one well | Sodir wellbores, fields; bit sizes | Derived |
-| observation | Composite log of one Volve well | Volve LAS/DLIS | Observed |
-| echo | Wiggle section, time not depth; resolution limit | Volve SEG-Y extract; synthetic wedge from `seismic_art` for the resolution point, labelled synthetic | Observed / Derived |
-| tie | Well tie: log, synthetic, traces | Volve check shots and logs | Interpreted |
-| interpretation | Alternative pictures of one surface | Volve "Official" vs "Other" horizons; base survey vs reprocessed (ST0202 vs ST10010); real pick-to-horizon misfit | Interpreted |
-| measurement error | Position ellipse and depth reference per well | `position_uncertainty`, rotary-table elevation | Derived |
-| depth | Time-to-depth fan; "cut the map" | Check-shot disagreement (one table is tens of ms off at the reservoir); `kit-surfaces` | Interpreted |
-| volumes | P90/P50/P10 bar and exceedance curve | To build; pick inputs with ranges, state them | Interpreted (simulated, labelled so) |
-| test | Prognosis against outcome | See open question 3 | Observed vs Interpreted |
-| therefore | How to read a subsurface claim | none | n/a |
-
-`seismic_art` also gives a candidate opening or closing image: a seismic section wrapped into rings, to make the echo something the reader feels before they are told what it is. It must follow that repo's honest-art rules: attribution, domain, polarity, and synthetic labelled as synthetic.
-
-## Licences and acknowledgements
-
-- **Volve.** `kit-surfaces/DATA-LICENCE.md` sets the working terms: credit Equinor and the former licence partners, link the Terms and Conditions, no sale, nothing misleading, no endorsement, as-is. `seismic_art/docs/concepts.md` said CC BY-NC-SA, which was wrong: the terms are CC BY 4.0 based with a no-sale condition (Idiom `DATASETS.md`, read 2026-11-09). Recorded in `DATA-LICENCE.md`.
-- Use the attribution line from `kit-surfaces` on the story and in the appendix, and add a plain-language acknowledgement of Volve as a rare open data release.
-- **Sodir.** Check the FactPages licence and record the terms in `data/README.md`.
-- Raw data stays out of git (`data/raw/`, ignored); only story-sized extracts are committed.
-- Code is MIT; the narrative text and figures need their own licence, consistent with the data terms.
-
-## Phases
-
-1. **Housekeeping.** Rename text to Pinpoints. Add `docs/` links to CLAUDE.md. Settle licences (above) and write `data/README.md`.
-2. **Audit.** Confirm what exists locally: the Volve SEG-Y, logs and interpretation files; whether the Volve seismic cube is available (`seismic_art` notes it is not local); and the Sodir marts. Decide the Volve well and the extraction window. Output: a short availability table.
-3. **Extracts and metrics.** Small, committed files in `data/`; `story.py` with the scale and uncertainty metrics, each with source and confidence.
-4. **Figures.** Check which devices SubScout's `charts.js` already covers (map, dots, range bars) and which are new custom figures (wiggle section, well tie, composite log, depth fan, exceedance curve). Reuse `seismic_art` and `kit-surfaces` D3 code where it fits.
-5. **Write and build.** Replace the outline with prose. `uv run subscout build`, then the readability gate on phone and desktop.
-6. **Review and publish.** Check every number appears in the ledger; check attribution; publish to GitHub Pages. Publishing is public, so confirm first.
-
-## Risks
-
-- SubScout's `story.md` format is v0.1 and may change; the outline's own header says so.
-- Several figures are new custom components, which is the largest build cost.
-- The Volve seismic cube may not be on this machine. The echo and tie beats need the SEG-Y extract (121 files, 0.54 GB in the inventory); without it they fall back to the synthetic cube, clearly labelled.
-- "Several interpreters" has no ready set of independent interpretations. The Volve alternatives are different surveys and folders, not blind picks by different people, so the text must say what they are.
-- Outside analogies add claims that must be sourced.
-
-## Open questions
-
-1. ~~Is Volve the whole story?~~ Settled: no. Field independent, Volve as the receipt.
-2. Do we make our own alternative horizon picks (labelled Interpreted, method stated), or use only what the Volve release contains?
-3. The pre/post-drill beat needs a prognosis. Does the Volve release include one (the plan for development against production, or well prognoses against actual tops)? I have not checked.
-4. Which comparatives to keep? Researched; recommendation in `comparatives.md` (seafloor mapping, tunnel ground investigation, weather ensembles, plus the industry's look-back studies for the test beat).
-5. Should this repo's CLAUDE.md also import Idiom's `CORE.md`, as `seismic_art` and `ep_geoscience_analytics` do, for voice and structure?
+Raw data never enters the repo; `story/data/` holds small derived extracts only.

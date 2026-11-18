@@ -1,0 +1,25 @@
+{
+ "versions": {
+  "line_m": 4182.301740668719,
+  "n_samples": 84,
+  "n_picks": 24,
+  "surfaces": [
+   "Base Cretaceous",
+   "Hod Fm top",
+   "Shetland Gp top",
+   "Ty Fm top"
+  ]
+ },
+ "closure": {
+  "high": "H3",
+  "crest_m": 2802.2,
+  "spill_m": 2989.5,
+  "spill_kind": "edge",
+  "curve_max_depth": 3172.5,
+  "P90": 3105,
+  "P50": 3135,
+  "P10": 3260,
+  "area_P90": 7.495193548387099,
+  "area_P50": 19.748920634920626
+ }
+}
