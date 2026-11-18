@@ -4,9 +4,17 @@
 
 Voice, working rules and dataset terms follow Idiom (`CORE.md`, `DATASETS.md`, `house/`; private repo, normally linked at `../../shared/idiom`). The import is harmless when the file is absent (CI).
 
-A SubScout story about how uncertain geoscience interpretation is. **Status: full narrative built** (hook, ladder, observation, echo, tie, error stack, interpretation, depth, volumes, test, therefore). Field-independent story; Volve is the
-worked case, not the subject. Owner: Adam McCarthy, petroleum geoscience domain expert. Plan in
-`docs/plan.md`; `story/story.py` computes every number from the extracts in `story/data/`.
+A SubScout story about scale and compounding uncertainty, from the pore throat to the North Sea and the decision. **Status:
+remake built on branch `remake` (2026-11-18), awaiting Adam's review before merge**; the first story is the local tag
+`v1-final`. Volve is the worked case, not the subject. Owner: Adam McCarthy, petroleum geoscience domain expert. Plan in
+`docs/plan.md`, outline and rulings in `docs/outline.md`; `story/story.py` computes every number from the extracts in
+`story/data/`, written by `scripts/make_all.ps1`; `tests/test_numbers.py` checks them.
+
+- Figures share `story/figures/_common.js`: the scale ladder strip, sizing, labels with a halo, hover. A figure whose
+  source or confidence differs from another's is its own chart block, never a `use:` step (SubScout keeps a figure's
+  source and confidence across its `use:` steps).
+- In prose, cite a report by name and page; do not add review-status wording. Where a published coefficient is missing,
+  fit the relation on the data and say so.
 
 - Built with SubScout (github.com/AdmcCarthy/core-subscout). Follow SubScout's CLAUDE.md and styleguide
   for colour, type, registers, confidence language, tables, maps and performance.

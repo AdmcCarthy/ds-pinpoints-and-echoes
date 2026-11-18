@@ -1,9 +1,12 @@
 // One inline of the Volve full stack through the well, drawn as variable density on a canvas.
 // state: { horizons } draws the published interpretation on top; { zoom } narrows to the reservoir.
 import { token, onSchemeChange } from "../runtime/js/subscout.js";
+import { ladderBar, plotHeight, rungs } from "./_common.js";
 
-export default function section(el, datasets) {
+export default function section(el, datasets, opts = {}) {
   const S = datasets.section;
+  const lad = rungs(datasets);
+  if (lad) d3.select(el).selectAll("svg.ladder-bar").data([0]).join("svg").attr("class", "ladder-bar");
   const H = datasets.horizons.map((r) => ({ h: r.horizon, xl: +r.crossline, t: +r.twt_ms }));
   const byH = d3.group(H, (r) => r.h);
   const n = S.crosslines.length, ns = S.n_samples;
@@ -32,7 +35,8 @@ export default function section(el, datasets) {
   function draw(width, state = {}) {
     last = [width, state];
     const narrow = width < 600;
-    const Hpx = Math.round(Math.min(Math.max(width * 0.6, 260), window.innerHeight * (narrow ? 0.28 : 0.6)));
+    if (lad) ladderBar(el, width, lad, state.rung ?? "bed");
+    const Hpx = plotHeight(width, opts, { ratio: 0.6 });
     const m = { l: 44, r: 8, t: 8, b: 26 };
     const t0 = S.t0_ms, t1 = S.t0_ms + (ns - 1) * S.dt_ms;
     const wellX = S.well_dist_m;

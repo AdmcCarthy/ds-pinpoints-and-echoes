@@ -8,7 +8,7 @@ merged. Work happens on the branch `remake`. The step-by-step outline and its nu
 
 A decision worth more than a billion dollars rests on a few cubic metres of measured rock. The measurements start at the pore
 throat, a few micrometres across. They are carried up through the plug, the log, the well, the echo and the field to claims
-about a sea, about twelve orders of magnitude. Each rung adds its own uncertainty, the uncertainties widen together, and the
+about a sea, about eleven orders of magnitude. Each rung adds its own uncertainty, the uncertainties widen together, and the
 decision is still reached, owned and tested against what the field later gave.
 
 ## Decisions (2026-11-18)
@@ -25,11 +25,15 @@ decision is still reached, owned and tested against what the field later gave.
 | Phase | Work | Gate |
 |---|---|---|
 | 0 | Branch `remake`, local tag `v1-final` | done 2026-11-18 |
-| 1 | `outline.md` with every number and its source; open items | **Adam reviews** |
-| 2 | Scripts, one per section (`make_core`, `make_wells`, `make_seismic`, `make_field`, `make_cascade`, `make_money`, `make_test`); `story.py`; `tests/test_numbers.py` | tests pass |
-| 3 | Figures: `ladder`, `ledger`, `pore`, `plugs`, `corelog`, `cascade`, `money`, and rewritten wells, log, section, wedge, tie, fan, transect, closure, revisions | each looked at on 360 px and 1440 px |
-| 4 | `story.md` and the appendix; Idiom checkers | checkers clean |
-| 5 | Build, readability gate, snapshots, README, Idiom directory card | **Adam reviews before merge** |
+| 1 | `outline.md` with every number and its source; open items | done 2026-11-18 (Adam's rulings in `outline.md`) |
+| 2 | Scripts, one per section (`make_core`, `make_log`, `make_wells`, `make_seismic`, `make_field`, `make_cascade`, `make_money`, `make_test`); `story.py`; `tests/test_numbers.py` | done: 9 tests pass |
+| 3 | Figures: `ladder` (and the ladder strip in every figure), `ledger`, `pore`, `plugs`, `corelog`, `cascade`, `money`, `volve`, and rewritten wells, log, section, wedge, tie, fan, transect, closure | done: looked at on 360 px and 1440 px |
+| 4 | `story.md` and the appendix; Idiom checkers | done: checkers clean, build 0 warnings |
+| 5 | Readability gate, snapshots, README | gate passes on five viewports; **Adam reviews before merge** |
+
+The story is one arc (`arc: zoom`). That needed a SubScout change, made on core-subscout branch `whole-story-arc`
+(2026-11-18, Adam's choice): present mode runs every sequence as one deck, and the arc check accepts zoom's returning
+moment. The Pages workflow checks out SubScout main, so that branch must be merged and tagged before this one.
 
 ## Data in use
 

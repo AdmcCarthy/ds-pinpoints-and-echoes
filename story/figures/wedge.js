@@ -1,9 +1,12 @@
 // The synthetic wedge: a bed thinning from 80 m to nothing, seen through the data's wavelet. Left, the
 // seismic response as variable density; right, apparent against true thickness. Synthetic, and says so.
 import { token, onSchemeChange } from "../runtime/js/subscout.js";
+import { ladderBar, plotHeight, rungs } from "./_common.js";
 
-export default function wedge(el, datasets) {
+export default function wedge(el, datasets, opts = {}) {
   const W = datasets.wedge;
+  const lad = rungs(datasets);
+  if (lad) d3.select(el).selectAll("svg.ladder-bar").data([0]).join("svg").attr("class", "ladder-bar");
   const nT = W.thickness_m.length, nS = W.t_ms.length;
   const wrap = d3.select(el).selectAll("div.ss-wedge").data([0]).join("div").attr("class", "ss-wedge").style("position", "relative");
   const canvas = wrap.selectAll("canvas").data([0]).join("canvas").style("display", "block").style("position", "absolute").style("left", 0).style("top", 0);
@@ -24,7 +27,8 @@ export default function wedge(el, datasets) {
     const dark = document.documentElement.dataset.colourScheme === "dark" || ((getComputedStyle(document.documentElement).getPropertyValue("color-scheme") || "").includes("dark"));
     paint(dark);
     const narrow = width < 600;
-    const H = Math.round(Math.min(Math.max(width * 0.5, 240), window.innerHeight * (narrow ? 0.28 : 0.5)));
+    if (lad) ladderBar(el, width, lad, state.rung ?? "bed");
+    const H = plotHeight(width, opts, { ratio: 0.5 });
     const m = { l: 40, r: 8, t: 22, b: 30 }, split = narrow ? width : Math.round(width * 0.58);
     const v = W.v_m_s;
     const tdom = [20, 20 + 160];

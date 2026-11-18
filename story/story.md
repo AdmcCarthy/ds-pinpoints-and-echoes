@@ -1,52 +1,52 @@
 ---
 title: Pinpoints and Echoes
 short_title: Pinpoints and Echoes
-dek: Every map of the subsurface is mostly inference. A handful of boreholes and the echoes of sound waves become a confident picture of rocks no one has seen. Here is how that picture is built, how far it can be wrong, and why it is still worth trusting.
-kicker: NORTH SEA · SODIR WELLBORES · VOLVE AS THE WORKED CASE
+dek: How a measurement smaller than a hair becomes a decision about a sea. From the pore throat to the North Sea, each step up the scale adds its own uncertainty, and the decision is still made.
+kicker: FROM THE PORE TO THE NORTH SEA · VOLVE AS THE WORKED CASE
 byline: Adam McCarthy
-date: 2026-11-09
+date: 2026-11-18
+arc: zoom
 register: section
 palette: tide
 surface: nordic-cool
 units: sm3
 horizon: { data: header, height: 80, label: false, palette: shale }
 kpis:
-  - { metric: n_wellbores, label: petroleum wellbores in the Norwegian North Sea }
-  - { metric: hole_cm, label: "cm across at reservoir depth", filter: round:0 }
-  - { metric: nn_km, label: "km to the nearest other exploration well (typical)", filter: round:1 }
-  - { metric: volve_swing, label: "× between the highest and lowest estimate of one field", filter: round:1 }
+  - { metric: orders, label: "orders of magnitude from a pore throat to the North Sea", filter: round:0 }
+  - { metric: plug_litres, label: "litres of rock measured in the laboratory for one field", filter: round:0 }
+  - { metric: cas_cor_x, label: "× between the low and high case of one field's oil", filter: round:1 }
+  - { metric: volve_capex_usd, label: "billion USD invested on that basis", filter: round:1 }
 sources:
   sodir:
-    name: Sodir FactPages, wellbore, field and reserves tables (Norwegian Offshore Directorate)
+    name: Sodir FactPages, wellbore, discovery, field, reserves, production and investment tables (Norwegian Offshore Directorate)
     url: "https://factpages.sodir.no"
-    accessed: 2026-11-06
-    note: "Source: Sodir. Contains data under the Norwegian licence for Open Government data (NLOD 2.0) distributed by Sodir. Filtered, converted to wellhead positions and summarised by the author."
+    accessed: 2026-11-18
+    note: "Source: Sodir. Contains data under the Norwegian licence for Open Government data (NLOD 2.0) distributed by Sodir. Filtered, summarised and converted by the author's data engine; screening economics (opex, tariffs, abandonment, tax) are the engine's stated assumptions, not Sodir data."
   volve:
     name: Volve data village, Equinor ASA and the former Volve licence partners
     url: "https://www.equinor.com/energy/volve-data-sharing"
-    note: "Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display. Horizons, closure curve and contact distribution via kit-surfaces; surveys, check shots and picks via the author's data engine."
-  gebco:
-    name: GEBCO, release of the GEBCO_2025 Grid
-    url: "https://gebco.net/news/release-gebco2025-grid"
-    accessed: 2026-11-08
-    note: "Share of the world's ocean floor mapped to modern standards, as announced by the Seabed 2030 project on 21 June 2025."
-  hoek:
-    name: Hoek and Palmieri (1998), Geotechnical risks on large civil engineering projects, IAEG Congress keynote
-    url: "https://www.rocscience.com/assets/resources/learning/hoek/Geotechnical-Risks-on-Large-Civil-Engineering-Projects-1998.pdf"
-    accessed: 2026-11-08
-    note: "Citing the World Bank (1985) on hydropower costs and the US National Committee on Tunnel Technology (1984) on 84 tunnels."
-  ecmwf:
-    name: ECMWF, Enter the ensembles (2024)
-    url: "https://www.ecmwf.int/en/about/media-centre/aifs-blog/2024/enter-ensembles"
-    accessed: 2026-11-08
+    note: "Contains data from the Volve data village, © Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway, Bayerngas Norge). Used under the Volve Terms and Conditions. Generalised for display. Core analysis and mercury injection from the 15/9-19 A and BT2 core reports (mercury injection: 15-9-19_A_0035.pdf, pages 213 to 224); horizons, closure curve and contact distribution via kit-surfaces; surveys, check shots and picks via the author's data engine."
+  macro:
+    name: IMF Primary Commodity Prices (Brent), Norges Bank USD/NOK, US Bureau of Labor Statistics CPI-U
+    url: "https://www.imf.org/en/Research/commodity-prices"
+    accessed: 2026-11-18
+    note: "Used only to convert Sodir's NOK to real 2025 USD and to set the range of prices; only derived values are shown, the series are not reproduced."
+  story:
+    name: Stated assumptions of this story
+    url: "https://github.com/AdmcCarthy/ds-pinpoints-and-echoes/blob/main/data/assumptions.yaml"
+    note: "Ranges for the volumetric factors, the rock-quality link, the daily cost of a well and the windows used for base rates, chosen for the illustration and listed in Basis of analysis. They are not Volve's own estimates."
 data:
   wells: data/wells.csv
   geometry: data/geometry.csv
   chain: data/chain.csv
-  spread: data/spread.csv
   transect: data/transect.csv
   picks: data/picks.csv
+  spread: data/spread.csv
   log: data/log.csv
+  core_log_pairs: data/core_log_pairs.csv
+  plugs: data/plugs.csv
+  micp: data/micp.csv
+  micp_samples: data/micp_samples.csv
   section: data/section.json
   header: data/header.json
   horizons: data/horizons.csv
@@ -55,84 +55,294 @@ data:
   timedepth: data/timedepth.csv
   closure: data/closure.csv
   contact: data/contact.csv
-  volumes: data/volumes.csv
+  cascade: data/cascade.csv
+  cascade_hist: data/cascade_hist.csv
+  volve_money: data/volve_money.csv
+  prospect_price: data/prospect_price.csv
+  prospect_npv: data/prospect_npv.csv
+  prospect_curve: data/prospect_curve.csv
   volve_reserves: data/volve_reserves.csv
   revisions: data/revisions.csv
-  notes: data/beats_notes.json
+  core_notes: data/core_notes.json
+  log_notes: data/log_notes.json
+  wells_notes: data/wells_notes.json
+  seismic_notes: data/seismic_notes.json
+  field_notes: data/field_notes.json
+  cascade_notes: data/cascade_notes.json
+  money_notes: data/money_notes.json
+  test_notes: data/test_notes.json
 ---
 
-A field development is sanctioned on a picture of rock that nobody has seen. The picture is assembled from
-two kinds of evidence: a few holes a hand's width across, and sound that went down several kilometres and
-came back. This story follows one such picture from the first hole to the number in the board paper, and keeps
-a tally of what is observed, what is derived and what is interpreted along the way. The argument holds for any
-field. The receipts come from Volve, a small North Sea oil field whose owners released its data when it was
-done, and from Sodir, the Norwegian regulator, whose records cover every well on the shelf.
+In {{ volve_first_capex }} a group of companies began to spend money on a small oil field in the North Sea. By the
+time it closed they had invested about {{ volve_capex_usd | round:1 }} billion US dollars in today's money. Every
+dollar rested on rock nobody had seen. This story follows that rock up the scale, from the gaps between sand grains to
+the whole of the Norwegian North Sea. At each step it keeps a tally of what was measured, what was calculated and what
+was judged, and of how much each step leaves open.
 
-## Pinpoints
+## What one field cost, and what it rested on
 
-::: step {beat=hook register=outcrop}
-### Every well ever drilled in the Norwegian North Sea
-
-The map shows {{ n_wellbores | int }} petroleum wellbores drawn at their true size on the area they span. None
-of them is visible. At this scale each one is a small fraction of a pixel, and together they have ever been a
-hole in one part in {{ one_in | about }} of the area inside the dashed line. Everything known about the rock
-between them is inferred.
+::: step {beat=moment}
+Volve lies in block 15/9 of the Norwegian North Sea. Investment began in {{ volve_first_capex }}, oil flowed from
+{{ volve_first_oil }} to {{ volve_last_oil }}, and the field sold {{ volve_produced | volume }} before it shut down.
+The bars are what the licensees spent each year, converted to 2025 dollars.
 
 ```chart
-id: shelf
+id: volve
 type: custom
-module: figures/scale.js
-data: [wells, geometry]
-state: { mag: 1 }
-title: At true size, the wells vanish
-subtitle: Wellhead positions of petroleum wellbores, Norwegian North Sea, drawn at true diameter
+module: figures/volve.js
+data: [volve_money, ladder]
+state: { both: false }
+title: About a billion dollars went into Volve before it closed
+subtitle: Investment by year, Sodir's nominal NOK converted to 2025 USD
 source: sodir
 confidence: derived
-unit: km (area), cm (hole)
-notes: Wellhead positions, not bottom-hole. The dashed outline is the convex hull of the wellheads, not the sea. Every wellbore counts, sidetracks included. Hole diameter is the Volve reservoir-depth median.
+unit: USD million (2025)
+notes: Sodir's investment figures in nominal NOK, converted with the year's USD/NOK (Norges Bank) and US CPI-U (BLS). The negative bar in 2016 is Sodir's own figure. The strip along the top is the scale ladder; nothing is lit yet.
 ```
 :::
 
-::: step {beat=hook}
-Enlarged thousands of times, the same wells show where the drilling has been: strings of platforms along the
-field axes, and wide areas between them that no bit has touched.
+::: step {beat=moment}
+The money came back as oil. How much would come back was decided by the rock: how much of it there was, how much
+oil its pores held and how easily the oil could flow out.
 
 ```chart
-use: shelf
-mag: 12000
-title: Enlarged to be seen, the wells still leave the area empty
-subtitle: The same wellheads, each enlarged by the factor stated below
+use: volve
+both: true
+title: The spending came first; the oil followed for nine years
+subtitle: Investment by year in 2025 USD, and net sold production by year in million Sm³ o.e.
 ```
 :::
 
-::: step {beat=ladder}
-### A hole a hand's width across, and the next one kilometres away
+::: step {beat=moment}
+### A few litres of rock behind a billion dollars
 
+In the laboratory, the rock measured from Volve's two cored wells comes to about {{ plug_litres | round:0 }} litres:
+{{ n_plug_h | int }} small horizontal plugs and {{ n_plug_v | int }} larger vertical ones.
+
+Across the whole Norwegian North Sea, Sodir lists {{ sodir_core_km | round:0 }} km of core from
+{{ sodir_core_wells | int }} wellbores. The ladder runs from the smallest thing measured to the largest thing decided:
+about {{ orders | round:0 }} orders of magnitude.
+
+```chart
+id: ladder
+type: custom
+module: figures/ladder.js
+data: ladder
+state: { upto: all }
+title: From a pore throat to a sea, about eleven powers of ten
+subtitle: Every scale this story visits, on one logarithmic ruler
+source: volve
+confidence: derived
+unit: m
+notes: Each length is computed from the data where it is a measurement (throat, log sample, hole, resolvable bed, well spacing, closure, area) and stated as a parameter where it is a class (sand grain, plug). Widths of areas are the side of a square of equal area.
+exception: { rule: linear axes, reason: the lengths span about eleven orders of magnitude }
+```
+:::
+
+## Down to the throats between the grains
+
+::: step {beat=context}
+Sandstone is grains with space between them. The space holds the oil. The narrow necks that join one pore to the
+next, the pore throats, decide how fast it can move.
+
+Flow through a tube grows with the fourth power of its width, so a throat half as wide passes about one
+{{ poise_half | int }}th of the flow.
+
+```chart
+id: pore
+type: custom
+module: figures/pore.js
+data: [micp, micp_samples, ladder]
+state: { view: tubes }
+title: Halve the throat and the flow falls sixteenfold
+subtitle: A sketch of sand grains and the space between them, and two tubes whose radii differ by two
+source: story
+confidence: interpreted
+notes: A diagram, not data. The fourth-power rule is Hagen–Poiseuille flow in a straight tube; real throats are irregular, so the rule sets the steepness, not the number.
+```
+:::
+
+::: step {beat=context}
+Throats are measured by forcing mercury into a plug. At low pressure it enters only the widest throats; at high
+pressure it finds the narrowest. {{ micp_n | int }} plugs of {{ well_a }} were tested this way, and their throats run
+from about {{ micp_r_min | round:2 }} µm to about {{ micp_r_max | round:0 }} µm.
+
+```chart
+id: micp
+type: custom
+module: figures/pore.js
+data: [micp, micp_samples, ladder]
+state: { view: curves }
+title: Mercury finds the wide throats first and the narrow ones last
+subtitle: Mercury saturation against the throat radius it has entered, mercury-injection plugs of 15/9-19 A
+source: volve
+confidence: observed
+unit: µm, % of pore volume
+notes: Read from the special core analysis report 15-9-19_A_0035.pdf, pages 213 to 224; radii are the report's own conversion of injection pressure. The first points of some curves carry a small conformance artefact.
+exception: { rule: linear axes, reason: throat radii span four orders of magnitude }
+```
+:::
+
+::: step {beat=context}
+One number summarises each curve: R35, the throat radius at which mercury fills {{ 35 | param }} % of the pore space.
+In these plugs it runs from {{ r35_min | round:1 }} to {{ r35_max | round:0 }} µm, inside sand grains about
+{{ grain_mm | round:2 }} mm across.
+
+```chart
+use: micp
+view: r35
+title: The throat that matters is a few micrometres across
+subtitle: The same curves, with the radius at 35 % mercury saturation marked on each
+```
+:::
+
+## Eight hundred plugs from two wells
+
+::: step {beat=context}
+The routine core analysis of {{ well_a }} and {{ well_b }} holds {{ n_plugs | int }} plugs. Their permeability, the
+ease with which fluid flows through them, runs from {{ k_min | round:2 }} to {{ k_max | int }} millidarcies: about
+{{ k_span | round:0 }} orders of magnitude within one reservoir.
+
+```chart
+id: plugs
+type: custom
+module: figures/plugs.js
+data: [plugs, micp_samples, ladder]
+state: { band: false }
+title: One reservoir holds rock a million times more permeable than other rock in it
+subtitle: Horizontal Klinkenberg permeability against helium porosity, routine plugs of 15/9-19 A and BT2
+source: volve
+confidence: observed
+unit: mD, %
+notes: Every plug with both measurements is drawn; none is removed. Permeability on a logarithmic axis, as is conventional. Where the plugs are coloured by throat size, the colour is Derived from the relation fitted on the mercury samples.
+exception: { rule: linear axes, reason: permeability spans six orders of magnitude }
+```
+:::
+
+::: step {beat=context}
+### At one porosity, a three-hundredfold range
+
+Porosity, the share of the rock that is pore space, predicts some of that range but not most of it. The
+{{ band_n | int }} plugs with about the same porosity, {{ 19 | param }} to {{ 21 | param }} %, still differ in
+permeability by a factor of {{ band_x | round:0 }}.
+
+```chart
+use: plugs
+band: true
+title: At one porosity, permeability still varies almost three-hundredfold
+```
+:::
+
+::: step {beat=context}
+The throats explain much of the rest. A relation fitted to the mercury plugs gives every routine plug a throat size
+from its permeability and porosity, with an error of about {{ fit_err_pct | round:0 }} %.
+
+The idea is Winland's; the coefficients are fitted on this field's own data. Coloured by throat, the cloud sorts
+itself into bands.
+
+```chart
+use: plugs
+band: false
+throat: true
+mercury: true
+title: Coloured by throat size, the scatter turns into order
+subtitle: The same plugs, coloured by the throat radius the fitted relation gives them; rings are the mercury samples
+```
+:::
+
+::: step {beat=context}
+Each plug was measured at {{ plug_bar | int }} bar of confining pressure, far less than the rock felt underground,
+after it had been cleaned and dried.
+
+```chart
+use: plugs
+throat: false
+mercury: false
+title: Every plug is a measurement under laboratory conditions
+```
+:::
+
+## A log is continuous along one line only
+
+::: step {beat=context}
+A well log is drawn by tools pulled up the hole. The composite log of {{ well_log }} samples the rock every
+{{ log_sample_cm | int }} cm over {{ log_span_m | round:0 }} m: natural radioactivity, density, electrical resistivity
+and the speed of sound. The reservoir, the Hugin Formation, is {{ hugin_m | round:0 }} m thick here.
+
+```chart
+id: log
+type: custom
+module: figures/log.js
+data: [log, ladder]
+state: { zoom: false }
+title: Rich along one line, blind a metre away
+subtitle: Composite log of 15/9-F-11 T2 against depth below mean sea level; the Hugin Fm shaded
+source: volve
+confidence: observed
+unit: API, g/cm³, ohm·m, µs/ft
+notes: Four of the composite's curves. Depth is converted from measured depth with the well's near-offset check shot. Resistivity on a logarithmic axis, as is conventional. The reservoir band is the interpreters' top and base picks.
+```
+:::
+
+::: step {beat=context}
+Inside the reservoir the log resolves layers a few tens of centimetres thick. It does not measure permeability. That
+is calculated from the other curves, with a model calibrated to the plugs.
+
+```chart
+use: log
+zoom: true
+title: In the reservoir, the log resolves layers the echo cannot
+```
+:::
+
+::: step {beat=context}
+### The log against the plugs it was calibrated to
+
+Set the calculated permeability beside the plugs at the same depths and the two disagree in a steady way. In the two
+cored wells the log gives {{ cl_lo | pct }} to {{ cl_hi | pct }} of the plugs' median.
+
+Neither is wrong. They measure different volumes of rock under different conditions, and the model is fitted to the
+plugs.
+
+```chart
+id: corelog
+type: custom
+module: figures/corelog.js
+data: [core_log_pairs, ladder]
+title: The log reads lower than the plugs it was calibrated to
+subtitle: Interpreted log permeability against plug permeability at the same depth, 15/9-19 A and BT2
+source: volve
+confidence: derived
+unit: mD
+notes: The interpretation is calibrated to the core, so this is a consistency check, not an independent test. Hollow points sit at the interpretation's 0.1 mD floor. Plug depths are shifted to the log by the core shift table.
+exception: { rule: linear axes, reason: both quantities span six orders of magnitude }
+```
+:::
+
+## The well as a pinpoint
+
+::: step {beat=context}
 At reservoir depth a wellbore is about {{ hole_cm | round:0 }} cm across. The typical exploration well is
-{{ nn_km | round:1 }} km from its nearest neighbour, in a range from {{ nn_p10 | round:1 }} km to
-{{ nn_p90 | round:1 }} km. Divide one by the other and the gap is {{ spacing_ratio | about }} hole widths.
-The rock in between is never touched, only argued about.
+{{ nn_km | round:1 }} km from the nearest other one. Everything the log and the plugs know lies inside that hole.
 
 ```chart
 id: ruler
 type: custom
 module: figures/ruler.js
-data: geometry
+data: [geometry, ladder]
 state: { coin: false }
-title: From a hole a hand fits in to an area hundreds of kilometres wide
-subtitle: Lengths on a logarithmic scale, metres to kilometres
+title: From a hole a hand fits into, to an area hundreds of kilometres wide
+subtitle: Lengths on a logarithmic scale
 source: sodir
 confidence: derived
 unit: m, km
-notes: Distances use wellhead positions of exploration wellbores (initial bores, 100 m cells). Logarithmic axis, which departs from the linear-axis default; it is the only way to show both ends. Hole diameter is the Volve reservoir-depth median.
+notes: Distances use wellhead positions of exploration wellbores (first bores, 100 m cells). Hole diameter is the Volve reservoir-depth median.
 exception: { rule: linear axes, reason: the lengths span seven orders of magnitude }
 ```
 :::
 
-::: step {beat=ladder}
-Redrawn with the wellbore as a coin one centimetre across, the nearest well sits {{ coin_m | about }} m away
-and the area the wells span becomes a square {{ coin_span_km | about }} km on a side. Decisions costing
-billions of kroner rest on what lies in that space.
+::: step {beat=context}
+Shrink the wellbore to a coin a centimetre across and the next well is about {{ coin_m | round:0 }} m away.
 
 ```chart
 use: ruler
@@ -141,396 +351,354 @@ title: As a coin, the next well is a long walk away
 ```
 :::
 
-::: step {beat=observation}
-### What one well records
+::: step {beat=context}
+### Even a well's position is a measurement
 
-Along its own path a well is generous. The composite log of Volve well F-11 T2 samples the rock every
-{{ log_sample_cm | int }} cm over {{ log_span_m | round:0 }} m of hole: natural radioactivity, bulk density,
-electrical resistivity and the speed of sound. Each curve is a measurement with a tool, a calibration and an
-error of its own. The Hugin Formation, the reservoir, is {{ hugin_thickness | round:0 }} m thick here and
-stands out on every track. A metre to the side of the hole, nothing is measured at all.
+The surveys of Volve's wells carry a typical sideways uncertainty of {{ pos_h | round:0 }} m at their end. Depth adds
+links of its own: the reference the depths are measured from, the conversion from time, the pick of a surface.
+Combined, the typical vertical error is about {{ stack_typical | round:0 }} m; the largest values on file combine to
+about {{ stack_worst | round:0 }} m.
 
 ```chart
-id: log
+id: errstack
 type: custom
-module: figures/log.js
-data: log
-state: { zoom: false, reservoir: [3181.5, 3282.8] }
-title: Rich along one line, blind a metre away
-subtitle: Composite log of 15/9-F-11 T2 against depth below mean sea level; the Hugin Fm shaded
+module: figures/errstack.js
+data: [stack, ladder]
+state: { upto: 6 }
+title: Small errors at each link add up at the target
+subtitle: Vertical errors at the reservoir by link, typical (solid) and largest on file (light), and their combination
 source: volve
-confidence: observed
-unit: API, g/cm³, ohm·m, µs/ft
-notes: Four of the composite's 21 curves. Depth is converted from measured depth with the well's near-offset check-shot table. Resistivity is on a logarithmic axis, as is conventional. The reservoir band is the interpreters' top and base picks.
+confidence: interpreted
+unit: m
+notes: Links combined in quadrature, which assumes they are independent. The depth reference is a systematic offset, not a random error, so the combined largest value is a bound, not a forecast.
 ```
 :::
 
-::: step {beat=observation}
-Within the reservoir the log resolves layers a few tens of centimetres thick: cemented bands, shale breaks,
-the fine structure that decides how oil moves. This is the detail the echo cannot see.
+## Between the wells, only echoes
 
-```chart
-use: log
-zoom: true
-title: In the reservoir, the log sees layers the echo cannot
-```
-:::
-
-## Echoes
-
-::: step {beat=echo}
-### The same ground as an echo
-
-Sound left the sea surface, travelled down through the water and {{ hugin_top_tvdss | round:0 }} m of rock,
-and part of it returned from the top of the Hugin Formation after {{ hugin_twt_s | round:2 }} seconds. The
-panel is inline {{ inline | int }} of the Volve survey, {{ n_traces | int }} traces across, with the well
-as a dashed line. The vertical axis is time, not depth. What looks like a cross-section is a record of
-arrivals, and turning it into depth is a separate step with its own uncertainty.
+::: step {beat=context}
+Between the wells the rock is seen only by sound. A survey ship fires air guns and listens for echoes from the
+layers below. The panel is inline {{ inline | int }} of the Volve survey, {{ n_traces | int }} traces
+{{ bin_m | round:1 }} m apart. The vertical axis is time: the echo from the top of the reservoir returns after
+{{ hugin_twt_s | round:2 }} seconds.
 
 ```chart
 id: section
 type: custom
 module: figures/section.js
-data: [section, horizons]
+data: [section, horizons, ladder]
 state: { horizons: false }
-title: A cross-section made of sound, in time
-subtitle: Inline {{ inline | int }} of the ST10010 full stack through 15/9-F-11 T2, two-way time, relative amplitude
+title: Between the wells, the rock is known by its echo
+subtitle: Inline of the ST10010 full stack through 15/9-F-11 T2, two-way time
 source: volve
 confidence: observed
-unit: ms two-way time; km from the well
-notes: Pre-stack depth migrated and delivered in time (2011 processing). Every second crossline is drawn. Amplitudes are relative and polarity is not stated in the headers. Greyscale, positive dark, departs from the data palette because seismic is read as texture; one highlight marks the well.
-exception: { rule: data palette, reason: greyscale variable density is how a seismic section is read }
+unit: ms
+notes: Relative amplitude; the polarity is not stated in the file. Every second trace is drawn.
 ```
 :::
 
-::: step {beat=echo}
-On the same panel, the surfaces the Volve interpreters published. Each line is a judgement about which
-arrival belongs to which rock boundary, carried across the survey from where the wells pin it. Away from the
-well the lines are interpretation; at the well they are tied.
+::: step {beat=context}
+The interpreters' surfaces follow the echoes from well to well. At the well they are tied to the log; away from it
+they are a judgement about which echo is the same layer.
 
 ```chart
 use: section
 horizons: true
-title: What an interpreter adds to the echo
+title: The published surfaces follow the echoes away from the well
 ```
 :::
 
-::: step {beat=echo}
-Around the reservoir the data's dominant frequency is about {{ dom_hz | round:0 }} Hz and the sound travels at
-{{ v_res | int }} m/s, so a quarter of a wavelength is {{ quarter_m | round:0 }} m. A synthetic bed thinned
-from eighty metres to nothing shows what that means: below about {{ tuning_m | round:0 }} m the echoes from its top and
-base merge, and the thickness the seismic reports stops following the truth. The layers the log resolved in
-the previous panel are far below this limit.
+::: step {beat=context}
+### How thin a bed the echo can see
+
+The sound that returns from Volve's reservoir has a typical frequency of {{ dom_hz | round:0 }} Hz. Through rock at
+{{ v_res | int }} m/s that blurs any bed thinner than about {{ tuning_m | round:0 }} m into a single echo, a hundred
+times thicker than the layers the log resolved.
 
 ```chart
 id: wedge
 type: custom
 module: figures/wedge.js
-data: wedge
-title: Below the tuning thickness, two echoes become one
-subtitle: Synthetic wedge at the data's wavelet; left, the response; right, the thickness the echo reports against the truth
+data: [wedge, ladder]
+title: Below a few tens of metres, top and base merge into one echo
+subtitle: A synthetic bed thinning to nothing, seen through the data's own frequency
 source: volve
 confidence: derived
 unit: m, ms
-notes: Synthetic, and labelled so. A zero-phase Ricker wavelet at the centroid frequency of the real data, two interfaces of equal and opposite reflectivity, the velocity from the well's sonic log in the Hugin Fm. Real wavelets are not zero phase, so real tuning differs in detail.
+notes: Synthetic. Two interfaces of equal and opposite reflectivity at the reservoir's sonic velocity, with a zero-phase wavelet at the centroid frequency of the real data.
 ```
 :::
 
-::: step {beat=echo}
-The limit is set by wavelength, in water as in rock. The same physics maps the sea floor by sonar, and by 2025
-only {{ 27.3 | cite:gebco }} per cent of the world's ocean floor had been mapped to modern standards. The rock
-beneath it is mapped from kilometres further away, through the sea floor, with a longer wave.
-
-```chart
-use: wedge
-title: The same limit applies to every echo, including the sea floor's
-```
-:::
-
-::: step {beat=tie}
-### Where the pinpoint meets the echo
-
-The two kinds of evidence meet in the well tie. The log's sonic and density give a reflectivity series over {{ ai_cover | pct }} of the window; the
-data's wavelet turns it into a synthetic trace; the check-shot table places it in time. Beside it is the real
-trace at the well. Without adjustment the two correlate at {{ tie_zero | round:2 }}. A single bulk shift of
-{{ tie_shift | int }} ms raises that to {{ tie_corr | round:2 }}.
+::: step {beat=context}
+A synthetic echo made from the log can be set beside the real one at the well, which ties the pinpoint to the echo.
 
 ```chart
 id: tie
 type: custom
 module: figures/tie.js
-data: tie
+data: [tie, ladder]
 state: { shifted: false }
-title: The log, turned into sound, beside the sound itself
-subtitle: Synthetic seismogram from the 15/9-F-11 T2 log and the real trace at the well, 2,300 to 3,100 ms
+title: The log's echo and the real echo, side by side
+subtitle: Synthetic seismogram from the log of 15/9-F-11 T2 beside the real trace at the well
 source: volve
 confidence: derived
-unit: ms two-way time; relative amplitude
-notes: Reflectivity from sonic and density where both exist (a share stated in the ledger), convolved with a zero-phase Ricker wavelet at the data's centroid frequency, placed in time with the near-offset check-shot table. Scaled to the real trace's RMS. The data's polarity is not stated; the synthetic is drawn with the sign that matches better. No stretch applied.
+unit: ms
+notes: Zero-phase wavelet at the data's centroid frequency, no stretch or squeeze, one bulk shift. A full tie would extract the wavelet and adjust the time-depth relation.
 ```
 :::
 
-::: step {beat=tie}
-After the shift the main reflectors line up and the detail between them does not. The log is sampled every
-{{ log_sample_cm | int }} cm; the echo averages tens of metres. Two instruments measuring the same rock agree on the outline and
-disagree on the detail, which is the whole relationship between a well and a seismic survey in one panel. A
-working tie would go further: a wavelet extracted from the data rather than assumed, and stretch applied to the
-synthetic. Each of those steps is a judgement, and this is where the judgements begin.
+::: step {beat=context}
+After one shift of {{ tie_shift | int }} ms the two correlate at {{ tie_corr | round:2 }}. The outline agrees; the
+detail does not. That remainder is the honest measure of how well the two records fit.
 
 ```chart
 use: tie
 shifted: true
-title: After one shift, the outline agrees and the detail does not
+title: After one shift the outline agrees; the detail does not
 ```
 :::
 
-## Measurements
+::: step {beat=context}
+### One echo time, several depths
 
-::: step {beat=error-stack}
-### Every measurement is uncertain, and they stack
-
-Where the well is. What depth is measured from. How fast sound travels. Where a pick sits on the wavelet. Each
-link in the chain carries an error, and the errors stack. In Volve the horizontal position of a well is known
-to a median {{ pos_h | round:0 }} m at the end of its survey, and to {{ pos_h_max | round:0 }} m in the worst
-case. The figure follows the {{ n_links | int }} vertical links one at a time, starting with the well's own
-depth.
-
-```chart
-id: stack
-type: custom
-module: figures/errstack.js
-data: stack
-state: { upto: 2 }
-title: Small errors in each link add up at the target
-subtitle: Vertical error at the reservoir, Volve. Solid bar typical, lighter bar largest on file.
-source: volve
-confidence: interpreted
-unit: m
-notes: Links are combined in quadrature, which assumes they are independent. The depth reference is a systematic offset, so the largest combined value is a bound, not a forecast. Time errors are converted to depth at the Volve average velocity. The Volve horizons shown are already adjusted to the wells.
-exception: { rule: one hue per entity, reason: the combined row takes the highlight colour to set it apart }
-```
-:::
-
-::: step {beat=error-stack}
-A depth reference mixed up between the rotary table and sea level shifts every depth in a well by the height
-of the rig floor, {{ rt_m | round:0 }} m for the Volve platform wells. It is a known trap, and one Volve
-check-shot table turned out to be referenced that way.
-
-```chart
-use: stack
-upto: 3
-title: The depth reference can shift every depth at once
-```
-:::
-
-::: step {beat=error-stack}
-Seismic arrives as two-way time, and velocities from check shots convert it to depth. Where the picks and the
-check shots were made independently they disagree by tens of metres in the worst case. Even after the Volve
-horizons were adjusted to the wells, the reservoir surface misses the picks by metres typically and by about a
-hundred in the worst case.
-
-```chart
-use: stack
-upto: 5
-title: Time to depth, and the surface against the picks, add the most
-```
-:::
-
-::: step {beat=error-stack}
-Typical errors combine to about {{ stack_typical | round:0 }} m at the reservoir. The largest on file combine
-to about {{ stack_worst | round:0 }} m. That is the honest width of the answer to the question "how deep is
-it?", before any interpretive judgement has been made.
-
-```chart
-use: stack
-upto: 6
-title: Together, metres in the typical case and hundreds in the worst
-```
-:::
-
-## Interpretations
-
-::: step {beat=interpretation}
-### Between the wells the surface is drawn, not measured
-
-Take one surface, the top of the Ty Formation, along a {{ line_km | round:1 }} km line between wells. At the
-{{ n_picks_line | int }} well picks near the line (circles) the depth was observed and its time comes from a
-check-shot table. Everywhere between them the surface is drawn, by an interpreter, by software, or by both.
-
-```chart
-id: transect
-type: custom
-module: figures/transect.js
-data: [transect, picks]
-state: { stage: 1 }
-title: Between the wells, the surface is drawn, not measured
-subtitle: Ty Fm top along a line between two well picks, Volve, two-way time in ms (time increases downward)
-source: volve
-confidence: interpreted
-unit: ms TWT, km
-notes: Pick depths are Observed and their times Derived through the check-shot table; both surfaces are Interpreted. The two versions are the base survey (ST0202R08, PSDM) and the reprocessed survey (ST10010) as published in the Volve release; they differ in processing and in picking, so they are two published answers, not blind picks by different interpreters. Values are read at the nearest node, 50 m apart. Picks within 150 m of the line are shown at their along-line position.
-```
-:::
-
-::: step {beat=interpretation}
-The base survey gives one surface and the reprocessed survey another. They agree on the broad shape and differ
-in the detail. Along this line they differ by a median {{ gap_med_ms | round:0 }} ms and by up to
-{{ gap_max_ms | round:0 }} ms, which is up to about {{ gap_max_m | round:0 }} m of depth at the Volve average
-velocity.
-
-Neither is wrong. Neither passes through the picks either: on average they miss them by
-{{ miss_base | round:0 }} and {{ miss_repro | round:0 }} ms.
-
-```chart
-use: transect
-stage: 3
-title: Two defensible surfaces, and the gap between them
-```
-:::
-
-::: step {beat=interpretation}
-The textbook picture is that interpretations agree near the wells and part away from them. The Volve versions
-show a weaker form of it. Within a quarter of a kilometre of a well pick the median difference is already
-{{ near_lo | round:0 }} to {{ near_hi | round:0 }} ms, depending on the surface. Beyond two kilometres, where
-{{ n_far | int }} of the {{ n_versions | int }} surfaces have enough nodes to compare, it is
-{{ far_lo | round:0 }} to {{ far_hi | round:0 }} ms.
-
-```chart
-id: spread
-type: custom
-module: figures/spread.js
-data: spread
-title: The versions differ at the wells, and more away from them
-subtitle: Difference between the base and reprocessed versions of four Volve horizons, by distance to the nearest well pick
-source: volve
-confidence: derived
-unit: ms TWT
-notes: Solid line is the median absolute difference at nodes 12.5 m apart, dashed line the 90th percentile. Bands with fewer than a thousand nodes are not drawn. Distance is to the nearest well pick of any interpreted surface. The Ty Fm top is a special case near wells because its official version was updated with later wells. A systematic offset between versions is included, not removed.
-exception: { rule: one hue per entity, reason: four surfaces take the categorical colours in a fixed order }
-```
-:::
-
-::: step {beat=depth}
-### One time, six depths
-
-Converting time to depth needs a velocity, and the velocity comes from check shots in a few wells. Volve has
-{{ fan_n | int }} check-shot tables from {{ fan_wells | int }} wellbore folders. Read every one at
-{{ fan_twt_s | round:2 }} seconds of two-way time and the depth comes back between {{ fan_min | round:0 }} and
-{{ fan_max | round:0 }} m below sea level, a spread of {{ fan_range | round:0 }} m.
+Time becomes depth through the speed of sound, measured in each well by a check shot. Read {{ fan_n | int }} of
+Volve's check-shot tables at {{ fan_twt_s | round:2 }} seconds and they give depths spread over
+{{ fan_range | round:0 }} m.
 
 ```chart
 id: fan
 type: custom
 module: figures/fan.js
-data: timedepth
-state: { at: 2650, zoom: false }
-title: Six tables, one time, a 68 m spread in depth
-subtitle: Two-way time against depth for every Volve check-shot table; the fan is read at 2.65 s
+data: [timedepth, ladder]
+state: { at: 2650, zoom: true }
+title: One echo time, read through each well's table, lands at different depths
+subtitle: Two-way time against depth below sea level for every Volve check-shot table covering that time
 source: volve
 confidence: observed
-unit: ms, m below MSL
-notes: Tables as delivered, including one whose depth reference was found to be the rotary table rather than sea level (corrected here by the stated 54.9 m). Two tables belong to one wellbore folder with two bores. The reading time is chosen because every table covers it.
+unit: m, ms
+notes: Each table belongs to one wellbore and is valid along that well's path; the spread includes real lateral change in velocity as well as measurement error.
 ```
 :::
 
-::: step {beat=depth}
-Close in, the curves fan out. Some of the spread is real, because the wells are kilometres apart and the rock
-between them changes. Some of it is measurement. A horizon mapped in time can be placed in depth anywhere
-inside that band, and the trap's size changes with it. Between the wells there is no way to say which table
-applies, which is the point.
+## From surfaces to the area of oil
+
+::: step {beat=context}
+Volve's surfaces were picked twice, on two processings of the seismic. Along a line of {{ line_km | round:1 }} km
+between wells, the two versions of the Ty Formation top differ by up to {{ gap_max_ms | round:0 }} ms, about
+{{ gap_max_m | round:0 }} m. Both pass close to the {{ n_picks_line | int }} well picks near the line; between them
+each is a judgement.
 
 ```chart
-use: fan
-zoom: true
-title: Close in, one time opens into a band of depth
+id: transect
+type: custom
+module: figures/transect.js
+data: [transect, picks, ladder]
+state: { stage: 3 }
+title: Two versions of the same surface part company between the wells
+subtitle: Ty Fm top along a line between two well picks, base survey and reprocessed survey, two-way time
+source: volve
+confidence: observed
+unit: ms
+notes: Both versions are published Volve interpretations; they differ in processing and in picking, so they are two answers, not a controlled experiment. Depth at 2,345 m/s, the field's average upper velocity.
 ```
 :::
 
-## The number
+::: step {beat=context}
+The oil fills the trap down to its contact with water. The 2005 plan put that contact at {{ owc_p90 | int }} m below
+sea level in the low case (P90) and {{ owc_p50 | int }} m in the middle case (P50).
 
-::: step {beat=volumes}
-The depth of the oil-water contact decides how much of a structure holds oil. On the smoothed Hugin top
-surface the area inside the closing contour does not grow smoothly with depth. Where the contact drops below
-a saddle that joins two highs, the trap takes in the second high at once, and the curve steps.
+Those {{ owc_step | int }} m take the area above the contact from {{ area_p90 | round:1 }} to {{ area_p50 | round:1 }}
+km².
 
 ```chart
 id: closure
 type: custom
 module: figures/closure.js
-data: [closure, contact]
-state: { cases: false }
-title: Area inside the closing contour grows in steps, not smoothly
-subtitle: Area inside the closing contour of the Volve high on the Hugin top, against depth
+data: [closure, contact, field_notes, ladder]
+state: { cases: true }
+title: Thirty metres of contact depth more than doubles the area of oil
+subtitle: Area inside the closing contour against depth, Volve high on the Hugin top, with the plan's contact cases
 source: volve
 confidence: interpreted
-unit: m below MSL, km²
-notes: The curve is the merge-tree closure analysis of kit-surfaces on a smoothed, interpreted depth surface; it is a reading of the structure, not the plan's own map. The contact distribution is digitised from the 2005 plan for development, table 3.5. Depth increases downward.
+unit: km², m
+notes: The surface is kit-surfaces' smoothed Hugin top in depth, an interpretation. P90 is the low case, P10 the high case (oilfield convention). The deepest case lies below the mapped surface.
 ```
 :::
 
-::: step {beat=volumes}
-Volve's 2005 plan for development gave the contact as a distribution: P90 {{ owc_p90 | int }} m, P50
-{{ owc_p50 | int }} m, P10 {{ owc_p10 | int }} m below sea level, with P90 the shallow, low case.
+## Every well in the Norwegian North Sea
 
-The area is
-{{ area_p90 | round:1 }} km² at the P90 contact and {{ area_p50 | round:1 }} km² at the P50,
-{{ area_ratio | round:1 }} times as much for {{ owc_step | int }} m more depth, because the P50 contact lies
-just below the saddle. The P10 contact lies deeper than the mapped surface can hold.
+::: step {beat=context}
+Step back to the whole shelf. The map shows {{ n_wellbores | int }} petroleum wellbores at their true size on the
+{{ area_km2 | about }} km² they span. None is visible. Together they have pierced one part in {{ one_in | about }} of
+that area.
 
 ```chart
-use: closure
-cases: true
-title: A few metres of contact depth can double the trap
-subtitle: The same curve with the plan's three contact cases
-```
-:::
-
-::: step {beat=volumes}
-### Carried through to oil, the contact becomes a curve
-
-Carry the contact through to recoverable oil and the width of the answer becomes visible. With the closure
-curve above, the plan's contact distribution and illustrative ranges for pay, porosity, saturation, shrinkage
-and recovery ({{ sim_n | int }} draws, parameters in the ledger), the simulation gives a P90 of
-{{ vol_p90 | round:0 }}, a P50 of {{ vol_p50 | round:0 }} and a P10 of {{ vol_p10 | round:0 }} million Sm³.
-The high case is {{ vol_ratio | round:1 }} times the low.
-
-```chart
-id: exceed
+id: shelf
 type: custom
-module: figures/exceed.js
-data: volumes
-title: One number is really a curve
-subtitle: Simulated recoverable oil, chance of at least each volume, with P90, P50 and P10 (oilfield convention)
-source: volve
-confidence: interpreted
-unit: Mn Sm³ (toggle for boe)
-notes: A simulation, labelled as one. Area from the closure curve at a contact drawn from the plan's distribution (draws deeper than the mapped surface take its deepest area, a share stated in the ledger); average net pay 15 to 50 m, porosity 0.16 to 0.24, water saturation 0.25 to 0.50, formation volume factor 1.15 to 1.35, recovery factor 0.30 to 0.50, all triangular and chosen for the story. Seed 7.
+module: figures/scale.js
+data: [wells, geometry, ladder]
+state: { mag: 1 }
+title: At true size, every well ever drilled vanishes
+subtitle: Wellhead positions of petroleum wellbores, Norwegian North Sea, drawn at true diameter
+source: sodir
+confidence: derived
+unit: km² (area), cm (hole)
+notes: Wellhead positions, not bottom-hole. The dashed outline is the convex hull of the wellheads, not the sea. Every wellbore counts, sidetracks included.
 ```
 :::
 
-::: step {beat=volumes}
-The exercise is illustrative and is not an estimate of Volve: every range was chosen for the story, and
-{{ capped | pct }} of the draws fall deeper than the mapped surface and take its deepest area. Its shape is
-the shape every such number has. Weather forecasters publish the same thing when they run
-{{ 51 | cite:ecmwf }} versions of tomorrow and show how far they spread.
+::: step {beat=context}
+Enlarged twelve thousand times, the wells show where the drilling has been: clusters on the fields, lone points on old
+ideas.
+
+The ground between them is still almost all unsampled. Every claim about the North Sea is built outwards from these
+points, and every new idea starts from them too.
 
 ```chart
-use: exceed
-title: A P50 is one point on the curve, not a prediction
+use: shelf
+mag: 12000
+title: Enlarged to be seen, the wells still leave the sea empty
+subtitle: The same wellheads, each enlarged by the factor stated below
 ```
 :::
 
-## The test
+## How the uncertainties multiply
 
-::: step {beat=test}
-### Twenty years of one field's number
+::: step {beat=context}
+The oil a field will give is a product: rock volume, times the share that is reservoir, times porosity, times oil
+saturation, divided by shrinkage at the surface, times the share that can be recovered.
 
-Drilling and production are the test of every estimate. Sodir has published its own recoverable estimate for
-Volve each year since {{ volve_first_yr | int }}: {{ volve_first | round:1 }} million Sm³ of oil equivalent
-at first, {{ volve_peak | round:1 }} at the peak in {{ volve_peak_yr | int }}, {{ volve_low | round:1 }} at
-the low in {{ volve_low_yr | int }}, and {{ volve_latest | round:1 }} in {{ volve_latest_yr | int }}, with
-the field produced out. The highest estimate was {{ volve_swing | round:1 }} times the lowest, for the same
-rock, as the wells and the production history arrived.
+Each factor comes from a different rung of the ladder. With only the rock volume uncertain, the high case is
+{{ cas_rock_x | round:1 }} times the low.
+
+```chart
+id: cascade
+type: custom
+module: figures/cascade.js
+data: [cascade, cascade_hist, test_notes, ladder]
+state: { upto: 0 }
+title: Rock volume alone leaves more than a threefold range
+subtitle: Recoverable oil, one row per factor added; P90 to P10 bar, P50 dot, the factor between them at right
+source: story
+confidence: interpreted
+unit: million Sm³
+notes: A Monte Carlo of the volumetric equation with one fixed set of draws. The contact is the 2005 plan's distribution on the Hugin top area curve; the other ranges are the story's stated assumptions, not Volve's own estimates. Logarithmic axis.
+exception: { rule: linear axes, reason: the products are lognormal; equal ratios read as equal distances }
+```
+:::
+
+::: step {beat=context}
+Add the factors one by one and the range widens at every step. With all six uncertain and independent, the high case
+is {{ cas_ind_x | round:1 }} times the low.
+
+```chart
+use: cascade
+upto: 5
+title: Each factor widens the range
+```
+:::
+
+::: step {beat=context}
+### Good rock tends to be good in every way
+
+The factors are not independent. In the plugs, porosity accounts for {{ r2_phi | pct }} of the variation in log
+permeability. Link the rock properties and the low case falls from {{ cas_ind_p90 | round:1 }} to
+{{ cas_cor_p90 | round:1 }} million Sm³; the high case becomes {{ cas_cor_x | round:1 }} times the low.
+
+```chart
+use: cascade
+upto: 6
+title: Linked rock properties widen the range again
+```
+:::
+
+::: step {beat=context}
+Volve itself produced {{ volve_oil | round:1 }} million Sm³ of oil. On this illustration that sits below the middle
+case, with about {{ volve_exceed | pct }} of the outcomes above it: inside the range, on the low side.
+
+```chart
+use: cascade
+upto: 6
+volve: true
+title: The real field came in below the middle of the range
+```
+:::
+
+## Price, chance and the drill-or-drop decision
+
+::: step {beat=context}
+Volume meets price. For a Volve-sized find developed as a subsea tie-back, value rises with price along a straight
+line for each volume case. The low case needs about {{ be_p90 | int }} USD a barrel to break even, the high case about
+{{ be_p10 | int }}. The annual Brent price since 2005 has not fallen below about {{ price_min | int }} USD in today's
+money.
+
+```chart
+id: money
+type: custom
+module: figures/money.js
+data: [prospect_price, prospect_npv, prospect_curve, money_notes, ladder]
+state: { view: price }
+title: The bigger the find, the lower the price it needs
+subtitle: Pre-tax value of the prospect against a flat oil price, for its P90, P50 and P10 volumes
+source: story
+confidence: interpreted
+unit: USD billion (2025), USD per barrel
+notes: Value is pre-tax NPV at 8 % real from a straight line in volume fitted to the screening economics of the subsea tie-back fields, and in price as the economics are affine in it. The grey band is the 10th to 90th percentile of annual Brent, 2005 to 2024, in 2025 money.
+```
+:::
+
+::: step {beat=context}
+Draw volume and price together and the value of the find, if it is found, runs from {{ npv_p90 | round:1 }} to
+{{ npv_p10 | round:1 }} billion USD between the low and high cases, a factor of {{ npv_x | round:1 }}. Two uncertain
+things, multiplied, give a wider answer than either alone.
+
+```chart
+use: money
+view: spread
+title: "Volume times price: the value spans a factor of more than seven"
+subtitle: Pre-tax NPV of the prospect if found, with volume and price both uncertain
+```
+:::
+
+::: step {beat=context}
+### The chance of finding it at all
+
+Before any of that, the well has to find oil. Since 2000, {{ pg_tech | pct }} of North Sea wildcat wellbores made a registered
+discovery. Of those drilled from 2000 to 2014, {{ pg_comm | pct }} found something that became, or joined, a producing
+field.
+
+A dry hole takes about {{ dry_days | int }} days of drilling, costed here at about {{ dry_cost | int }} million USD.
+
+```chart
+use: money
+view: chance
+title: For a prize this size, the dry hole is the smaller risk
+subtitle: Expected value of drilling the prospect against its chance of success, with Sodir's base rates
+```
+:::
+
+::: step {beat=context}
+At the commercial rate the expected value of drilling is about {{ emv | round:1 }} billion USD, and the well breaks
+even at a chance of about {{ be_pg | pct }}. The recommendation is to drill. The cost of being wrong is stated beside
+it: the licence group loses the cost of the well about three times in four, and the volume, if found, may be a quarter
+of the middle case. Volve itself, on the same screening economics, broke even at about {{ volve_be | int }} USD.
+
+```chart
+use: money
+view: price
+volve: true
+title: Volve itself broke even at under thirty dollars
+subtitle: The prospect's lines with Volve's own screening value against price (dashed)
+```
+:::
+
+## What the regulator's own record shows
+
+::: step {beat=moment}
+Sodir publishes its estimate of every field every year. For Volve it began at {{ volve_first | round:1 }} million Sm³
+o.e. in {{ volve_first_yr }}, rose to {{ volve_peak | round:1 }} in {{ volve_peak_yr }}, fell to
+{{ volve_low | round:1 }} in {{ volve_low_yr }} and ended at {{ volve_latest | round:1 }}. The answer moved while the
+oil was being produced.
 
 ```chart
 id: volve_hist
@@ -539,23 +707,19 @@ data: volve_hist
 x: snapshot_year
 y: recoverable_mn_sm3
 series: series
-volume: true
-unit_label: "Mn {unit} o.e."
-title: Sodir's estimate of Volve moved by half as the field was drilled and produced
-subtitle: Recoverable resources of the Volve field by snapshot year, million Sm³ oil equivalent
+title: Twenty years of one field's number
+subtitle: Sodir's recoverable estimate for Volve by year, million Sm³ o.e.
 source: sodir
 confidence: observed
-unit: Mn Sm³ o.e.; 1 Sm³ o.e. = 6.29 boe
-notes: Sodir's annual resource accounts as held in the FactPages. Oil equivalent follows Sodir's convention.
+unit: million Sm³ o.e.
 ```
 :::
 
-::: step {beat=test}
-### Half the fields grew, half shrank
-
-Volve is not unusual. For the {{ rev_n | int }} Norwegian fields with a development plan approved since 2003
-and at least five years of Sodir snapshots, the latest estimate divided by the first is {{ rev_median | round:2 }}
-at the median, but {{ rev_p10 | round:2 }} at the 10th percentile and {{ rev_p90 | round:2 }} at the 90th.
+::: step {beat=moment}
+Across {{ rev_n | int }} fields followed by Sodir from their plan for development, the latest estimate grew in
+{{ rev_up | pct }} and shrank in {{ rev_down | pct }}. {{ rev_halved | pct }} at least halved; {{ rev_doubled | pct }}
+at least doubled. For the middle eight in ten, the latest estimate is {{ rev_p10 | round:2 }} to
+{{ rev_p90 | round:2 }} times the first.
 
 ```chart
 id: revisions
@@ -564,90 +728,68 @@ data: revisions_dec
 row: decade
 value: ratio_pct
 label: field_label
-scale: linear
-unit: "% of first estimate"
-value_label: one dot per field
-title: The median field held its estimate; most individual fields did not
-subtitle: Latest Sodir recoverable estimate divided by the first, by decade of plan approval
+scale: symlog
+title: Half the fields grew and half shrank
+subtitle: Latest Sodir estimate as a percentage of the first, by decade of the plan's approval
 source: sodir
 confidence: derived
-notes: Fields whose first Sodir snapshot falls within a year of plan approval, so the first number is close to the sanction estimate. A value of 100 means no change. When highlighted, Volve is the dark dot.
+unit: "%"
 ```
 :::
 
-::: step {beat=test}
-{{ rev_down | pct }} fell by more than five per cent and {{ rev_up | pct }} grew by more than that;
-{{ rev_halved | pct }} at least halved and {{ rev_doubled | pct }} at least doubled. The median estimate was
-about right. Almost no single field was, and Volve, highlighted, is one dot among them.
+::: step {beat=moment}
+### Every rung leaves a range open
+
+The ranges stack into the decision, and the decision is still made: on the evidence there is, with the cost of being
+wrong stated beside it. Then the field is produced, the estimate is revised, and the next idea starts from
+{{ sodir_core_km | round:0 }} km of core and every well already drilled.
 
 ```chart
-use: revisions
-highlight: [Volve]
-title: Volve, highlighted, is one field among many that moved
-subtitle: The same ratios with Volve picked out
-```
-:::
-
-## Reading a claim
-
-::: step {beat=therefore}
-### Three words for any subsurface claim
-
-Every number above carries one of three words. Observed means measured or published, with a source: the log,
-the trace, Sodir's estimate. Derived means calculated from observed data by a stated method: the distance
-between wells, the tuning thickness, the fan. Interpreted means dependent on a model or a judgement, and given
-with its range: the horizons, the closure area, the simulated volume.
-
-```chart
-id: shelf_again
+id: ledger
 type: custom
-module: figures/scale.js
-data: [wells, geometry]
-state: { mag: 1 }
-title: "Back to the start: the wells, at true size"
-subtitle: Wellhead positions of petroleum wellbores, Norwegian North Sea, drawn at true diameter
-source: sodir
-confidence: derived
-unit: km (area), cm (hole)
-notes: The opening figure again. Wellhead positions, convex hull of the wellheads, every wellbore counted, Volve reservoir-depth hole diameter.
+module: figures/ledger.js
+data: [ledger, ladder]
+title: Each rung of the ladder leaves its own range
+subtitle: For each step of the story, the factor between its low and high values
+source: story
+confidence: interpreted
+unit: factor (high over low)
+notes: Each factor is measured in its own way (hover for the basis) and they are not multiplied together. Logarithmic axis.
+exception: { rule: linear axes, reason: the factors run from under two to nearly three hundred }
 ```
 :::
 
-::: step {beat=therefore}
-Other trades infer between boreholes and live with the consequences. A review of {{ 84 | cite:hoek }} tunnels
-found contract costs rising as the length of exploration drilling fell relative to the tunnel, and hydropower
-projects that had spent on average under {{ 1 | cite:hoek }} per cent of their cost on investigation before
-design overran by {{ 27 | cite:hoek }} per cent.
+::: appendix
+### Pore throats and plugs
 
-The subsurface case is the same case with deeper holes.
+Mercury-injection curves are read from the special core analysis of {{ well_a }} ({{ micp_report }}, pages
+{{ micp_page_lo }} to {{ micp_page_hi }}), as cumulative mercury saturation against the report's own pore-throat
+radius. R35 is the radius at which the cumulative saturation last crosses {{ 35 | param }} % from below, interpolated in
+log radius; the first points of each curve carry a small conformance artefact and are passed over by that rule. The
+throat relation, log₁₀ R35 = a + b log₁₀ k + c log₁₀ φ (k in mD, φ in %), follows Winland's idea and is fitted by least
+squares on the {{ fit_n | int }} mercury samples that have a porosity; Winland's published coefficients are not used.
+The fitted exponent of permeability is {{ fit_b | round:2 }}. Routine plugs: horizontal Klinkenberg permeability and
+helium porosity at {{ plug_bar | int }} bar net confining pressure, cleaned and dried; the Klinkenberg correction is the
+laboratory's empirical formula. Plug volume assumes each plug is as long as it is wide (one-inch horizontal and
+inch-and-a-half vertical plugs).
 
-```chart
-use: shelf_again
-mag: 12000
-title: Enlarged again, the holes and the ground between them
-subtitle: The same wellheads, each enlarged by the factor stated below
-```
+### How the volume chain is computed
+
+Recoverable oil = GRV × net-to-gross × φ × oil saturation ÷ Bo × recovery factor. GRV is the integral of the closure
+area between the contact and the contact less the gross thickness, capped at the crest. Families: lognormal for the
+thickness and Bo, logit-normal for the fractions, fitted to the stated P90, P50 and P10. The linked case draws the four
+rock properties from one shared factor with a loading of {{ rho | round:1 }}. Seed and draws ({{ cas_n | int }}) are
+fixed, so every step uses the same draws. {{ beyond_map | pct }} of the contacts lie below the mapped surface and take
+its deepest area.
+
+### Value, price and chance
+
+NPV is pre-tax, real 2025 USD, at {{ 8 | param }} % a year, from the data engine's screening economics of the
+{{ npv_lines_n | int }} subsea tie-back fields, fitted as a + b × volume at each flat price; both a and b are straight
+lines in price within rounding, so prices outside the fitted range are extrapolated on those lines. Base rates count
+first wellbores with purpose wildcat in the Norwegian North Sea; a commercial success is a discovery now producing, shut
+down, approved for production or included in a field. The dry-hole cost is the median drilling days of North Sea
+wildcat wellbores since 2015 times an assumed {{ spread_day | round:0 }} million USD a day. The range of prices is the 10th to
+90th percentile of annual Brent from 2005 to 2024, real 2025 USD: {{ price_lo | int }} to {{ price_hi | int }} USD a
+barrel, median {{ price_mid | int }}.
 :::
-
-::: step {beat=therefore}
-The questions to ask of any claim about the subsurface are the same three: which word applies, what it was
-compared with, and how wide the range is. The wells remain the only points where the rock has been touched.
-Everything between them is echo and inference.
-
-```chart
-use: shelf_again
-mag: 12000
-title: Pinpoints and echoes
-subtitle: The same wellheads, each enlarged by the factor stated below
-```
-:::
-
-## Acknowledgement
-
-The Volve data were released by Equinor ASA and the former Volve licence partners (ExxonMobil E&P Norway,
-Bayerngas Norge) under the Volve Terms and Conditions, a rare open release of a complete field, and this story
-could not be told without it. Wellbore, field and reserves data are from Sodir (Source: Sodir, under the Norwegian Licence for Open Government Data).
-Closure and contact analysis comes from the author's kit-surfaces project; surveys, check shots and picks
-from the author's data engine. Built with SubScout by Adam McCarthy (github.com/AdmcCarthy/core-subscout). No
-endorsement by Equinor, the former partners or Sodir is implied. Numbers, methods and sources follow in the
-basis of analysis.
