@@ -1,0 +1,53 @@
+{
+ "geometry": {
+  "reservoir_hole_mm": 215.9,
+  "n_wellbores": 7033.0,
+  "n_exploration_sites": 1168.0,
+  "hull_area_km2": 133213.045581055,
+  "nn_median_km": 2.348397680979983,
+  "nn_p10_km": 0.6708203932500386,
+  "nn_p90_km": 6.842862360004405
+ },
+ "chain": [
+  {
+   "link": "Well position (horizontal)",
+   "axis": "horizontal",
+   "typical": 7.66,
+   "worst": 22.56,
+   "unit": "m",
+   "confidence": "Observed"
+  },
+  {
+   "link": "Well depth (vertical position)",
+   "axis": "vertical",
+   "typical": 3.44,
+   "worst": 5.18,
+   "unit": "m",
+   "confidence": "Observed"
+  },
+  {
+   "link": "Depth reference (rotary table to sea level)",
+   "axis": "vertical",
+   "typical": 0.0,
+   "worst": 54.9,
+   "unit": "m",
+   "confidence": "Observed"
+  },
+  {
+   "link": "Time to depth (check-shot residual)",
+   "axis": "vertical",
+   "typical": 2.23,
+   "worst": 121.19,
+   "unit": "m",
+   "confidence": "Derived"
+  },
+  {
+   "link": "Horizon against well picks (reservoir)",
+   "axis": "vertical",
+   "typical": 0.55,
+   "worst": 103.92,
+   "unit": "m",
+   "confidence": "Derived"
+  }
+ ]
+}

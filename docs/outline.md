@@ -108,17 +108,18 @@ sea." The wording will be checked against the voice checkers in Phase 4.
 | 11.2 | `revisions` (59 fields) | Half grew, half shrank; P10 to P90 of latest over first is 0.31 to 1.91 | `revisions.csv`; Derived *found* |
 | 11.3 | `ledger` complete | The final step returns to the decision of step 1 with every bar in place | none |
 
-## Open items for Adam
+## Decisions at the Phase 1 gate (Adam, 2026-11-18)
 
-1. **Mercury-injection candidates.** The 11 samples (pages 213 to 224 of `15-9-19_A_0035.pdf`) are `candidate`, not
-   reviewed. Either review them, or the page labels them "read from the report, not yet checked".
-2. **Winland coefficients.** Neither the knowledge store nor the PDF library holds them. The plan avoids typing them from
-   memory: the throat at 35 % is read from the 11 mercury curves and a k–φ–throat relation is fitted on those samples
-   (Derived). Winland is named as the idea, without his coefficients, unless a paper is supplied (Pittman 1992 or Kolodzie
-   1980).
-3. **IMF price terms.** The redistribution terms of the IMF series are unverified (`DATASETS.md`). The plan ships only the
-   derived NPV values, never the price series. Is that acceptable?
-4. **Plug size.** The plug diameter and length for the rock-volume fraction (step 1.3) still need to be read from the core
-   report pages.
-5. **Poiseuille.** A reviewed text is needed in core-knowledge before step 2.1 cites it. Otherwise the step shows only the
-   measured relation.
+"This is a narrative story as such do not enforce such strict wording as not yet checked. Just quote the source. Fit you own
+relation."
+
+1. **Mercury injection.** The 11 samples are used and cited by report and page (`15-9-19_A_0035.pdf`, pages 213 to 224). Their
+   review status stays in the data and the appendix, not in the prose.
+2. **Throat relation.** The throat radius at 35 % mercury saturation is read from the 11 curves, and a k–φ–throat relation is
+   fitted on them (Derived) and applied to all plugs. Winland is named as the origin of the idea; his coefficients are not used.
+3. **Prices.** Only derived NPV values are shipped, never the IMF series (its redistribution terms are unverified). The
+   attribution names IMF, Norges Bank and BLS.
+4. **Plug size.** It is read from the core report and cited. If the report does not state it, the step gives the volume
+   per plug as a stated assumption.
+5. **Poiseuille.** The law is stated as standard physics (Hagen–Poiseuille), and the page shows the measured relation beside
+   it.

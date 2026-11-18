@@ -1,0 +1,53 @@
+{
+ "log": {
+  "well": "15/9-F-11 T2",
+  "las": "WLC_PETRO_COMPUTED_INPUT_1.LAS",
+  "sample_m": 0.09999999999990905,
+  "md_range": [
+   2469.8,
+   4530.0
+  ],
+  "hugin_tvdss": [
+   3181.5,
+   3282.84
+  ],
+  "hugin_thickness_m": 101.3,
+  "coverage": {
+   "GR": 0.9989807309615104,
+   "RHOB": 0.947968742416153,
+   "NPHI": 0.947968742416153,
+   "RT": 0.9943697519778673,
+   "DT": 0.944765325438043
+  }
+ },
+ "core_vs_log": [
+  {
+   "well_name": "15/9-19 A",
+   "phi_pairs": 462,
+   "phi_bias_log_minus_core": -0.012563129870129867,
+   "phi_rmse": 0.04113604892947472,
+   "phi_r": 0.8114359241997814,
+   "k_pairs": 428,
+   "k_median_ratio_log_over_core": 0.5951144069445417,
+   "log10k_r": 0.7705520974054774,
+   "k_log_floor_share": 0.1542056074766355,
+   "k_pairs_above_floor": 362,
+   "k_median_ratio_above_floor": 0.6950309891981534,
+   "log10k_r_above_floor": 0.7528936645807088
+  },
+  {
+   "well_name": "15/9-19 BT2",
+   "phi_pairs": 132,
+   "phi_bias_log_minus_core": -0.014656909090909092,
+   "phi_rmse": 0.0325991596814917,
+   "phi_r": 0.8387235607406808,
+   "k_pairs": 130,
+   "k_median_ratio_log_over_core": 0.5540779446548821,
+   "log10k_r": 0.83137344033659,
+   "k_log_floor_share": 0.13846153846153847,
+   "k_pairs_above_floor": 112,
+   "k_median_ratio_above_floor": 0.6076415404911182,
+   "log10k_r_above_floor": 0.8459502381326428
+  }
+ ]
+}

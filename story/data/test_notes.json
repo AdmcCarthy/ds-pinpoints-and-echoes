@@ -1,0 +1,24 @@
+{
+ "volve": {
+  "first_year": 2005,
+  "first": 13680000.0,
+  "peak_year": 2008,
+  "peak": 15250000.0,
+  "low_year": 2010,
+  "low": 9150000.0,
+  "latest_year": 2025,
+  "latest": 11380000.0,
+  "produced_oil_mn_sm3": 10.17199,
+  "oil_exceedance_on_cascade": 0.7756948933875367
+ },
+ "revisions": {
+  "n_fields": 59,
+  "median_ratio": 1.0232558139534884,
+  "p10": 0.30630533821373007,
+  "p90": 1.909396109096048,
+  "share_up": 0.4745762711864407,
+  "share_down": 0.4745762711864407,
+  "share_halved": 0.1694915254237288,
+  "share_doubled": 0.0847457627118644
+ }
+}

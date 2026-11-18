@@ -1,0 +1,139 @@
+{
+ "n": 50000,
+ "seed": 20261118,
+ "crest_m": 2802.2,
+ "deepest_mapped_m": 3172.5,
+ "contact_beyond_map_share": 0.12992,
+ "rho": 0.6,
+ "steps": [
+  {
+   "step": 0,
+   "key": "rock_volume",
+   "label": "how much rock lies above the contact",
+   "p90": 10.9666,
+   "p50": 19.4619,
+   "p10": 39.0876,
+   "mean": 20.6216,
+   "ratio": 3.5642,
+   "sd_log10": 0.1875
+  },
+  {
+   "step": 1,
+   "key": "ntg",
+   "label": "share of the thickness that is reservoir",
+   "p90": 8.3814,
+   "p50": 19.0393,
+   "p10": 36.0063,
+   "mean": 20.0844,
+   "ratio": 4.296,
+   "sd_log10": 0.2066
+  },
+  {
+   "step": 2,
+   "key": "porosity",
+   "label": "porosity",
+   "p90": 8.1435,
+   "p50": 18.9758,
+   "p10": 35.392,
+   "mean": 20.1702,
+   "ratio": 4.3461,
+   "sd_log10": 0.2128
+  },
+  {
+   "step": 3,
+   "key": "hc_saturation",
+   "label": "oil saturation",
+   "p90": 7.4149,
+   "p50": 18.5947,
+   "p10": 34.7618,
+   "mean": 19.9546,
+   "ratio": 4.6881,
+   "sd_log10": 0.2237
+  },
+  {
+   "step": 4,
+   "key": "bo",
+   "label": "oil shrinkage to the surface (Bo)",
+   "p90": 7.3627,
+   "p50": 18.5755,
+   "p10": 34.8607,
+   "mean": 19.9928,
+   "ratio": 4.7348,
+   "sd_log10": 0.2253
+  },
+  {
+   "step": 5,
+   "key": "recovery",
+   "label": "recovery factor",
+   "p90": 6.6508,
+   "p50": 18.3724,
+   "p10": 35.8139,
+   "mean": 20.1431,
+   "ratio": 5.3849,
+   "sd_log10": 0.2415
+  },
+  {
+   "step": 6,
+   "key": "correlated",
+   "label": "rock properties that move together",
+   "p90": 5.1184,
+   "p50": 18.6334,
+   "p10": 39.6616,
+   "mean": 21.2643,
+   "ratio": 7.7488,
+   "sd_log10": 0.283
+  }
+ ],
+ "factors": {
+  "thickness_m": {
+   "kind": "lognormal",
+   "p90": 80.0,
+   "p50": 100.0,
+   "p10": 120.0,
+   "label": "gross reservoir thickness",
+   "anchor": "Hugin 101 m at 15/9-F-11 T2"
+  },
+  "ntg": {
+   "kind": "logitnormal",
+   "p90": 0.6,
+   "p50": 0.75,
+   "p10": 0.9,
+   "label": "share of the thickness that is reservoir",
+   "anchor": "none: a range"
+  },
+  "porosity": {
+   "kind": "logitnormal",
+   "p90": 0.17,
+   "p50": 0.2,
+   "p10": 0.23,
+   "label": "porosity",
+   "anchor": "plug median 19.3 %"
+  },
+  "hc_saturation": {
+   "kind": "logitnormal",
+   "p90": 0.55,
+   "p50": 0.68,
+   "p10": 0.8,
+   "label": "oil saturation",
+   "anchor": "none: a range"
+  },
+  "bo": {
+   "kind": "lognormal",
+   "p90": 1.15,
+   "p50": 1.25,
+   "p10": 1.35,
+   "label": "oil shrinkage to the surface (Bo)",
+   "anchor": "none: a range"
+  },
+  "recovery": {
+   "kind": "logitnormal",
+   "p90": 0.3,
+   "p50": 0.4,
+   "p10": 0.5,
+   "label": "recovery factor",
+   "anchor": "none: a range"
+  }
+ },
+ "independent_final_ratio": 5.384900807505898,
+ "correlated_final_ratio": 7.748845240433511
+}

@@ -1,0 +1,65 @@
+{
+ "section": {
+  "well": "15/9-F-11 T2",
+  "inline": 10215,
+  "domain": "two-way time, ms (PSDM stack in time)",
+  "polarity": "not stated in the headers; unknown",
+  "quantity": "relative amplitude, int8 on the scale below",
+  "scale_abs": 5.963326930999756,
+  "t0_ms": 1800.0,
+  "dt_ms": 4.0,
+  "n_samples": 376,
+  "well_dist_m": 3037.5,
+  "well_trace_offset_m": 0.5,
+  "bin_m": 12.5,
+  "dominant_hz": 10.0,
+  "centroid_hz": 22.1,
+  "spectrum_window_ms": [
+   2300.0,
+   3100.0
+  ],
+  "crs": "ED50 / UTM 31N (text header)",
+  "source": "Volve data village, ST10010ZC11 PZ PSDM Kirchhoff full stack, time, 2011 processing",
+  "n_traces": 720
+ },
+ "horizons": {
+  "counts": {
+   "Base Cretaceous": 357,
+   "Shetland Gp top": 356,
+   "Ty Fm top": 320,
+   "Hugin Fm base": 229,
+   "Hugin Fm top": 226
+  },
+  "hugin_twt_ms_at_well": 2761.1
+ },
+ "tie": {
+  "wavelet_hz": 22.1,
+  "corr_zero_lag": -0.029,
+  "best_shift_ms": 12,
+  "corr_best": 0.317,
+  "sign": 1,
+  "impedance_coverage": 0.944231422608358,
+  "window_ms": [
+   2300.0,
+   3100.0
+  ]
+ },
+ "wedge": {
+  "f_hz": 22.1,
+  "v_m_s": 4012,
+  "tuning_m": 36.0,
+  "quarter_wavelength_m": 45.4
+ },
+ "fan": {
+  "twt_ms": 2650.0,
+  "n_tables": 6,
+  "depth_min": 2991.5,
+  "depth_max": 3059.8,
+  "wells": [
+   "15/9-19 A",
+   "15/9-19 B&BT2",
+   "15/9-F-11 T2",
+   "15/9-F-15 A"
+  ]
+ }
+}
