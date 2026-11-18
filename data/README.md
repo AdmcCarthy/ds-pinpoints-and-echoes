@@ -1,7 +1,7 @@
 # Data
 
 Raw downloads go in `data/raw/` (git-ignored). Story-sized extracts are committed in `story/data/`, written by the scripts in
-`scripts/` (one per section, run in order by `scripts/make_all.ps1`). Heavy ingestion stays in `ep_geoscience_analytics`.
+`scripts/` (one per section, run in order by `scripts/make_all.ps1`). Heavy ingestion stays in `ep-geoscience-analytics`.
 Stated assumptions for the compounding and money sections are in [`assumptions.yaml`](assumptions.yaml).
 
 ## In use
